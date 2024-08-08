@@ -1,21 +1,26 @@
 #!/bin/bash
 
-# download the binary
-if [[ "$XDG_CURRENT_DESKTOP" == "GNOME" || "$XDG_CURRENT_DESKTOP" == "ubuntu:GNOME" ]]; then
-	platform="gnome"
-elif [ "$XDG_CURRENT_DESKTOP" = "KDE" ]; then
-	platform="kde"
-elif [ "$XDG_CURRENT_DESKTOP" = "sway" ]; then
-	platform="wlroots"
+if [[ $(uname -o) == "Darwin" ]]; then
+	echo not available for macOS
+
 else
-	platform="x11"
-fi
-xremap_url=$(curl -sL https://api.github.com/repos/k0kubun/xremap/releases/latest | grep x86_64-$platform.zip | grep browser | cut -d'"' -f4)
-xremap_name=$(echo $xremap_url | cut -d'/' -f9)
-wget $xremap_url
-mkdir -p $HOME/.local/bin/
-7z x $xremap_name -O$HOME/.local/bin/
-rm $xremap_name
+
+	# download the binary
+	if [[ "$XDG_CURRENT_DESKTOP" == "GNOME" || "$XDG_CURRENT_DESKTOP" == "ubuntu:GNOME" ]]; then
+		platform="gnome"
+	elif [ "$XDG_CURRENT_DESKTOP" = "KDE" ]; then
+		platform="kde"
+	elif [ "$XDG_CURRENT_DESKTOP" = "sway" ]; then
+		platform="wlroots"
+	else
+		platform="x11"
+	fi
+	xremap_url=$(curl -sL https://api.github.com/repos/k0kubun/xremap/releases/latest | grep x86_64-$platform.zip | grep browser | cut -d'"' -f4)
+	xremap_name=$(echo $xremap_url | cut -d'/' -f9)
+	wget $xremap_url
+	mkdir -p $HOME/.local/bin/
+	7z x $xremap_name -O$HOME/.local/bin/
+	rm $xremap_name
 
 # Create basic config if not exists
 if [ ! -e $HOME/.config/xremap/config.yml ]; then
@@ -101,3 +106,5 @@ else
 	echo 'KERNEL=="uinput", GROUP="input", TAG+="uaccess"' | sudo tee /etc/udev/rules.d/input.rules
 fi
 echo udev rule added, you may need to reboot
+
+fi
