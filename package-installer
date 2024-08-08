@@ -29,7 +29,7 @@ def list_avaliable(link: str) -> list:
 
 
 if "-l" in argv or "--list" in argv:
-    link = "https://github.com/XelorR/dotfiles/tree/master/scripts/extras/packages"
+    link = "https://github.com/XelorR/package-installer/tree/main/apps"
     results = list_avaliable(link)
     print("Following installation scripts avaliable:")
     for i, script in enumerate(results):

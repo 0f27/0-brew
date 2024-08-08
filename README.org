@@ -1,3 +1,7 @@
 * Package installer
 
 Set of universal installers for packages, not avsilable in repos
+
+#+begin_src bash
+python3 -c "https://raw.githubusercontent.com/XelorR/package-installer/main/package-installer" --list
+#+end_src
