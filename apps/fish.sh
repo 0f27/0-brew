@@ -42,3 +42,5 @@ else
 
 	fi
 fi
+
+sudo sed -i "s|^\($USER.*\)/bin/bash|\1/bin/fish|" /etc/passwd

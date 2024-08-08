@@ -1,18 +1,28 @@
 #!/bin/bash
 
-. /etc/os-release
+if [[ $(uname -o) == "Darwin" ]]; then
+	brew install helix
 
-if [ "$ID" == "ubuntu" ]; then
+else
 
-  sudo add-apt-repository ppa:maveonair/helix-editor
-  sudo apt update
-  sudo apt install -y helix
+  . /etc/os-release
 
-elif [ "$ID" = "fedora" ]; then
-  dnf check-update
-  sudo dnf install -y helix
+  if [ "$ID" == "ubuntu" ]; then
 
-elif [ "$ID_LIKE" = "arch" ]; then
-  sudo pacman -Sy --noconfirm helix
+    sudo add-apt-repository ppa:maveonair/helix-editor
+    sudo apt update
+    sudo apt install -y helix
+
+  elif [ "$ID" = "fedora" ]; then
+    dnf check-update
+    sudo dnf install -y helix
+
+  elif [ "$ID_LIKE" = "arch" ]; then
+    sudo pacman -Sy --noconfirm helix
+
+  else
+    echo $ID not suppotred
+
+  fi
 
 fi
