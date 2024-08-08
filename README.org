@@ -1,0 +1,3 @@
+* Package installer
+
+Set of universal installers for packages, not avsilable in repos
