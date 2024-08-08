@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
 if [[ $(uname -o) == "Darwin" ]]; then
+	echo macOS version currently not implemented
+
 else
 	if ! test -f "$HOME/.anaconda3/bin/activate"; then
 		if command -v aria2c &>/dev/null; then
