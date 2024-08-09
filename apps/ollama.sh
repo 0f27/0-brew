@@ -1,15 +1,24 @@
 #!/usr/bin/env sh
 
-# Define Ollama installation path
-mkdir -p $HOME/.local/bin
-OLLAMA_PATH="$HOME/.local/bin/ollama"
+if [[ $(uname -o) == "Darwin" ]]; then
+  brew install --cask ollama
 
-# Download and install Ollama
-wget https://ollama.com/download/ollama-linux-amd64 -O $OLLAMA_PATH && chmod +x $OLLAMA_PATH
+elif [[ $(uname -o) == "Android" ]]; then
+  echo Ollama is not supported in Termux
 
-# Create systemd service file for Ollama
-mkdir -p $HOME/.config/systemd/user
-cat << EOF > $HOME/.config/systemd/user/ollama.service
+else
+
+	if [[ "$(uname -m)" == "x86_64" ]]; then
+    # Define Ollama installation path
+    mkdir -p $HOME/.local/bin
+    OLLAMA_PATH="$HOME/.local/bin/ollama"
+
+    # Download and install Ollama
+    wget https://ollama.com/download/ollama-linux-amd64 -O $OLLAMA_PATH && chmod +x $OLLAMA_PATH
+
+    # Create systemd service file for Ollama
+    mkdir -p $HOME/.config/systemd/user
+    cat << EOF > $HOME/.config/systemd/user/ollama.service
 [Unit]
 Description=Ollama Service
 After=network-online.target
@@ -21,6 +30,11 @@ RestartSec=3
 WantedBy=default.target
 EOF
 
-# Reload systemd, enable and start the service
-systemctl --user daemon-reload
-systemctl --user enable --now ollama
+    # Reload systemd, enable and start the service
+    systemctl --user daemon-reload
+    systemctl --user enable --now ollama
+
+	elif [[ "$(uname -m)" == "aarch64" ]]; then
+  	echo Ollama has no installation candidates for aarch64 on GNU Linux
+	fi
+fi
