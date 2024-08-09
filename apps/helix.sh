@@ -44,4 +44,7 @@ cursorline = true
 "L" = "goto_next_buffer"
 "S-tab" = "goto_previous_buffer"
 "tab" = "goto_next_buffer"
+
+[keys.insert]
+j = { j = "normal_mode" }
 EOF
