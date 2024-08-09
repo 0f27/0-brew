@@ -3,6 +3,9 @@
 if [[ $(uname -o) == "Darwin" ]]; then
 		brew install --cask warp
 
+elif [[ $(uname -o) == "Android" ]]; then
+  echo there is no warp in termux
+
 else
 
 	. /etc/os-release
