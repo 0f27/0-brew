@@ -45,7 +45,7 @@ else:
             [
                 "curl",
                 "-sL",
-                f"https://raw.githubusercontent.com/XelorR/dotfiles/master/scripts/extras/packages/{script}.sh",
+                f"https://raw.githubusercontent.com/XelorR/package-installer/main/apps/{script}.sh",
             ],
             stdout=PIPE,
         )
