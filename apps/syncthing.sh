@@ -3,6 +3,10 @@
 if [[ $(uname -o) == "Darwin" ]]; then
     brew install syncthing
 
+elif [[ $(uname -o) == "Android" ]]; then
+	apt update
+	apt install -y syncthing
+
 else
 
     . /etc/os-release
