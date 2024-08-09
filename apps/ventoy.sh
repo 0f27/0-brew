@@ -1,7 +1,10 @@
 #!/bin/bash
 
 if [[ $(uname -o) == "Darwin" ]]; then
-  echo not available for macOS
+  echo there is no ventoy on macos
+elif [[ $(uname -o) == "Android" ]]; then
+  echo there is no ventoy in termux
+
 
 else
 
