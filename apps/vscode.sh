@@ -3,6 +3,9 @@
 if [[ $(uname -o) == "Darwin" ]]; then
     brew install --cask visual-studio-code
 
+elif [[ $(uname -o) == "Android" ]]; then
+	echo termux version currently not implemented
+
 else
 
     . /etc/os-release
