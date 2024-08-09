@@ -1,7 +1,10 @@
 #!/bin/bash
 
 if [[ $(uname -o) == "Darwin" ]]; then
-	echo not available for macOS
+	echo Xremap is not supported on macOS
+
+elif [[ $(uname -o) == "Android" ]]; then
+  echo Xremap is not supported in Termux
 
 else
 
