@@ -3,6 +3,10 @@
 if [[ $(uname -o) == "Darwin" ]]; then
 	brew install helix
 
+elif [[ $(uname -o) == "Android" ]]; then
+  apt update
+  apt install -y helix
+
 else
 
   . /etc/os-release

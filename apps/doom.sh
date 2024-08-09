@@ -4,6 +4,10 @@ if ! command -v emacs &>/dev/null; then
     if [[ $(uname -o) == "Darwin" ]]; then
         brew install emacs
 
+    elif [[ $(uname -o) == "Android" ]]; then
+      apt update
+      apt install -y emacs
+
     else
 
         . /etc/os-release

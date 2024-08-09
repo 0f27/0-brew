@@ -3,6 +3,10 @@
 if [[ $(uname -o) == "Darwin" ]]; then
 	brew install gh
 
+elif [[ $(uname -o) == "Android" ]]; then
+  apt update
+  apt install -y gh
+
 else
 
 	. /etc/os-release

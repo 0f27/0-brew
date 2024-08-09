@@ -3,6 +3,9 @@
 if [[ $(uname -o) == "Darwin" ]]; then
 	echo macOS version currently not implemented
 
+elif [[ $(uname -o) == "Android" ]]; then
+	echo termux version currently not implemented
+
 else
 	if ! test -f "$HOME/.anaconda3/bin/activate"; then
 		if command -v aria2c &>/dev/null; then

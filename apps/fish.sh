@@ -3,6 +3,10 @@
 if [[ $(uname -o) == "Darwin" ]]; then
 	brew install fish
 
+elif [[ $(uname -o) == "Android" ]]; then
+  apt update
+  apt install -y fish
+
 else
 
 	. /etc/os-release
