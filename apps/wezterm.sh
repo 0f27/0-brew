@@ -3,6 +3,9 @@
 if [[ $(uname -o) == "Darwin" ]]; then
   brew install --cask wezterm
 
+elif [[ $(uname -o) == "Android" ]]; then
+  echo there is no wezterm in Termux
+
 else
 
   . /etc/os-release
