@@ -18,7 +18,13 @@ else
   # download
   rm -rf "$FOLDER/$FILE"
   mkdir -p "$FOLDER"
-  curl --http1.1 "$URL" --output-dir "$FOLDER" --output "$FILE"
+  if command -v aria2c &>/dev/null; then
+  	aria2c $URL
+  elif command -v wget &>/dev/null; then
+  	wget $URL
+  elif command -v curl &>/dev/null; then
+  	curl -LO $URL
+  fi
 
   # unpack
   tar xzf "$FOLDER/$FILE" -C "$FOLDER/$EXTRACT_FOLDER"
