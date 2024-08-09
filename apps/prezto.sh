@@ -1,9 +1,14 @@
 #!/bin/bash
 
 if [[ $(uname -o) == "Darwin" ]]; then
-	echo zsh is macOS default
+	echo zsh is macOS default and already installed
+
+elif [[ $(uname -o) == "Android" ]]; then
+	apt update
+	apt install -y zsh git
 
 else
+  . /etc/os-release
 
 	if [[ "$ID" == "ubuntu" || "$ID" == "debian" ]]; then
 		sudo apt update
