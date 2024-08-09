@@ -30,3 +30,18 @@ else
   fi
 
 fi
+
+mkdir -p ~/.config/helix
+cat <<'EOF' >~/.config/helix/config.toml
+theme="dark_plus"
+
+[editor]
+bufferline = "multiple"
+cursorline = true
+
+[keys.normal]
+"H" = "goto_previous_buffer"
+"L" = "goto_next_buffer"
+"S-tab" = "goto_previous_buffer"
+"tab" = "goto_next_buffer"
+EOF
