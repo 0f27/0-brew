@@ -29,11 +29,12 @@ cat <<'EOF' >~/.config/wezterm/wezterm.lua
 local wezterm = require("wezterm")
 local config = {}
 
+-- config.default_prog = { "pwsh" }
+
 -- basic decorations and theme
--- config.color_scheme = "Everblush"
+config.color_scheme = "Vs Code Dark+ (Gogh)"
 -- config.window_background_opacity = 0.90
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
-config.hide_tab_bar_if_only_one_tab = true
 config.use_fancy_tab_bar = false
 config.window_padding = {
   left = 0,
@@ -44,10 +45,10 @@ config.window_padding = {
 
 -- font
 config.font_dirs = { ".fonts", "Library/Fonts" }
--- config.font = wezterm.font_with_fallback{
---   "Liga SFMono Nerd Font",
---   "MesloLGS Nerd Font Mono",
--- }
+config.font = wezterm.font_with_fallback{
+--  "Liga SFMono Nerd Font",
+--  "MesloLGS Nerd Font Mono",
+}
 config.font_size = 11.5
 
 -- disabling confirmation on exit
