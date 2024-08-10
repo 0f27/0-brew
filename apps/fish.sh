@@ -56,7 +56,7 @@ if ! command -v fish &>/dev/null; then
   sudo sed -i "s|^\($USER.*\)/bin/bash|\1/bin/fish|" /etc/passwd
 fi
 
-fish <<'EOF'
+/bin/fish <<'EOF'
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 fisher install jethrokuan/z
 EOF
