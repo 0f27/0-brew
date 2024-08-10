@@ -35,6 +35,9 @@ mkdir -p ~/.config/helix
 cat <<'EOF' >~/.config/helix/config.toml
 theme="dark_plus"
 
+[editor.cursor-shape]
+insert = "bar"
+
 [editor]
 bufferline = "multiple"
 cursorline = true
