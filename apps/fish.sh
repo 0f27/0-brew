@@ -54,6 +54,7 @@ if ! command -v fish &>/dev/null; then
   fi
 
   sudo sed -i "s|^\($USER.*\)/bin/bash|\1/bin/fish|" /etc/passwd
+  sudo sed -i "s|^\($USER.*\)/bin/zsh|\1/bin/fish|" /etc/passwd
 fi
 
 /bin/fish <<'EOF'
