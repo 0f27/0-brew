@@ -9,7 +9,7 @@ else
 
 	. /etc/os-release
 
-	if [[ "$ID" == "ubuntu" || "$ID" == "debian" ]]; then
+	if [ "$ID_LIKE" = "debian" ]; then
 		sudo apt install -y curl \
 			gnupg ca-certificates git \
 			gcc-multilib g++-multilib cmake libssl-dev pkg-config \

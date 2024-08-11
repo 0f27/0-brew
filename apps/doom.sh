@@ -12,7 +12,7 @@ if ! command -v emacs &>/dev/null; then
 
         . /etc/os-release
 
-        if [[ "$ID" == "ubuntu" || "$ID" == "debian" ]]; then
+        if [ "$ID_LIKE" = "debian" ]; then
             sudo apt update
             sudo apt install -y emacs
 

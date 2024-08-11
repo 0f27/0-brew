@@ -10,7 +10,7 @@ else
 
 	. /etc/os-release
 
-	if [[ "$ID" == "ubuntu" || "$ID" == "debian" ]]; then
+	if [ "$ID_LIKE" = "debian" ]; then
 		sudo apt-get install -y wget gpg
 		wget -qO- https://releases.warp.dev/linux/keys/warp.asc | gpg --dearmor >warpdotdev.gpg
 		sudo install -D -o root -g root -m 644 warpdotdev.gpg /etc/apt/keyrings/warpdotdev.gpg

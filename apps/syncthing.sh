@@ -11,7 +11,7 @@ else
 
     . /etc/os-release
 
-    if [[ "$ID" == "ubuntu" || "$ID" == "debian" ]]; then
+    if [ "$ID_LIKE" = "debian" ]; then
         sudo apt install -y curl
 
         # Add the release PGP keys:
