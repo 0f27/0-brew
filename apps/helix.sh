@@ -58,6 +58,7 @@ j = { j = "normal_mode" }
   "extend_search_next",
 ]
 C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw", ":reload-all"]
+A-z = [ ":toggle-option soft-wrap.enable", ":redraw" ]
 EOF
 
 # setting as default editor
