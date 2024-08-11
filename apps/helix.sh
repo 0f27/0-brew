@@ -57,12 +57,15 @@ EOF
 if ! grep -q 'set -Ux EDITOR hx' $HOME/.config/fish/config.fish; then
   mkdir -p $HOME/.config/fish
   echo 'set -Ux EDITOR hx' >> $HOME/.config/fish/config.fish
+  echo 'set -Ux VISUAL hx' >> $HOME/.config/fish/config.fish
 fi
 
 if ! grep -q 'export EDITOR=hx' $HOME/.zshrc; then
   echo 'export EDITOR=hx' >> $HOME/.zshrc
+  echo 'export VISUAL=hx' >> $HOME/.zshrc
 fi
 
 if ! grep -q 'export EDITOR=hx' $HOME/.bashrc; then
   echo 'export EDITOR=hx' >> $HOME/.bashrc
+  echo 'export VISUAL=hx' >> $HOME/.bashrc
 fi
