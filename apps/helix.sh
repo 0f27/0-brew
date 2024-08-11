@@ -23,6 +23,7 @@ else
 
   elif [ "$ID_LIKE" = "arch" ]; then
     sudo pacman -Sy --noconfirm helix
+    sudo ln -s /usr/bin/helix /usr/bin/hx
 
   else
     echo $ID not suppotred
