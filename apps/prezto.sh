@@ -1,29 +1,33 @@
 #!/bin/bash
 
-if [[ $(uname -o) == "Darwin" ]]; then
-	echo zsh is macOS default and already installed
+if ! command -v zsh &>/dev/null; then
+	if [[ $(uname -o) == "Darwin" ]]; then
+		echo zsh is macOS default and already installed, but git is still needed
+		brew install git
 
-elif [[ $(uname -o) == "Android" ]]; then
-	apt update
-	apt install -y zsh git
+	elif [[ $(uname -o) == "Android" ]]; then
+		apt update
+		apt install -y zsh git
 
-else
-  . /etc/os-release
+	else
+	  . /etc/os-release
 
-	if [[ "$ID" == "ubuntu" || "$ID" == "debian" ]]; then
-		sudo apt update
-		sudo apt install -y zsh git
-	elif [ "$ID" = "fedora" ]; then
-		dnf check-update
-		sudo dnf install -y zsh git
-	elif [ "$ID" = "opensuse" ]; then
-		sudo zypper refresh
-		sudo zypper install zsh git
-	elif [ "$ID_LIKE" = "arch" ]; then
-		sudo pacman -Sy zsh git
+		if [ "ID_LIKE" = "debian" ]; then
+			sudo apt update
+			sudo apt install -y zsh git
+		elif [ "$ID" = "fedora" ]; then
+			dnf check-update
+			sudo dnf install -y zsh git
+		elif [ "$ID" = "opensuse" ]; then
+			sudo zypper refresh
+			sudo zypper install zsh git
+		elif [ "$ID_LIKE" = "arch" ]; then
+			sudo pacman -Sy zsh git
+		fi
+
+		sudo sed -i "s|^\($USER.*\)/bin/bash|\1/bin/zsh|" /etc/passwd
+		sudo sed -i "s|^\($USER.*\)/bin/fish|\1/bin/zsh|" /etc/passwd
 	fi
-
-	sudo sed -i "s|^\($USER.*\)/bin/bash|\1/bin/zsh|" /etc/passwd
 fi
 
 zsh <<'EOF'
