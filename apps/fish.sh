@@ -57,18 +57,6 @@ if ! command -v fish &>/dev/null; then
   sudo sed -i "s|^\($USER.*\)/bin/zsh|\1/bin/fish|" /etc/passwd
 fi
 
-if [[ $(uname -o) == "Darwin" ]]; then
-  THE_SHELL='/opt/homebrew/bin/fish'
-else
-  THE_SHELL='/bin/fish'
-fi
-
-# installing plugins
-$THE_SHELL <<'EOF'
-curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-fisher install jethrokuan/z
-EOF
-
 # setting PATH
 PATH_TO_ADD="$HOME/.local/bin"
 FISH_CONFIG_FILE="$HOME/.config/fish/config.fish"
@@ -80,3 +68,18 @@ is_path_set() {
 if ! is_path_set; then
     echo "set -a fish_user_paths $PATH_TO_ADD" >> "$FISH_CONFIG_FILE"
 fi
+
+if [[ $(uname -o) == "Darwin" ]]; then
+  THE_SHELL='/opt/homebrew/bin/fish'
+  if ! grep -q /opt/homebrew/bin $FISH_CONFIG_FILE; then
+      echo "set -a fish_user_paths /opt/homebrew/bin" >> "$FISH_CONFIG_FILE"
+  fi
+else
+  THE_SHELL='/bin/fish'
+fi
+
+# installing plugins
+$THE_SHELL <<'EOF'
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+fisher install jethrokuan/z
+EOF
