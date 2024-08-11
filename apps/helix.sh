@@ -44,4 +44,7 @@ cursorline = true
 
 [keys.insert]
 j = { j = "normal_mode" }
+
+[keys.normal]
+C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw", ":reload-all"]
 EOF
