@@ -62,18 +62,30 @@ A-z = [ ":toggle-option soft-wrap.enable", ":redraw" ]
 EOF
 
 # setting as default editor
-if ! grep -q 'set -Ux EDITOR hx' $HOME/.config/fish/config.fish; then
+# EDITOR
+if ! grep -q 'set -Ux EDITOR' $HOME/.config/fish/config.fish; then
   mkdir -p $HOME/.config/fish
   echo 'set -Ux EDITOR hx' >> $HOME/.config/fish/config.fish
+fi
+
+if ! grep -q 'export EDITOR' $HOME/.zshrc; then
+  echo 'export EDITOR=hx' >> $HOME/.zshrc
+fi
+
+if ! grep -q 'export EDITOR' $HOME/.bashrc; then
+  echo 'export EDITOR=hx' >> $HOME/.bashrc
+fi
+
+# VISUAL
+if ! grep -q 'set -Ux VISUAL' $HOME/.config/fish/config.fish; then
+  mkdir -p $HOME/.config/fish
   echo 'set -Ux VISUAL hx' >> $HOME/.config/fish/config.fish
 fi
 
-if ! grep -q 'export EDITOR=hx' $HOME/.zshrc; then
-  echo 'export EDITOR=hx' >> $HOME/.zshrc
+if ! grep -q 'export VISUAL' $HOME/.zshrc; then
   echo 'export VISUAL=hx' >> $HOME/.zshrc
 fi
 
-if ! grep -q 'export EDITOR=hx' $HOME/.bashrc; then
-  echo 'export EDITOR=hx' >> $HOME/.bashrc
+if ! grep -q 'export VISUAL' $HOME/.bashrc; then
   echo 'export VISUAL=hx' >> $HOME/.bashrc
 fi
