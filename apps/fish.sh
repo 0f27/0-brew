@@ -6,17 +6,14 @@ if ! command -v fish &>/dev/null; then
   if [[ $(uname -o) == "Darwin" ]]; then
     echo macOS detected
     brew install fish
-    THE_SHELL='/opt/homebrew/bin/fish'
 
   elif [[ $(uname -o) == "Android" ]]; then
     echo Termux detected
     apt update
     apt install -y fish
-    THE_SHELL='/bin/fish'
 
   else
     echo assuming GNU Linux
-    THE_SHELL='/bin/fish'
 
     . /etc/os-release
 
@@ -58,6 +55,12 @@ if ! command -v fish &>/dev/null; then
 
   sudo sed -i "s|^\($USER.*\)/bin/bash|\1/bin/fish|" /etc/passwd
   sudo sed -i "s|^\($USER.*\)/bin/zsh|\1/bin/fish|" /etc/passwd
+fi
+
+if [[ $(uname -o) == "Darwin" ]]; then
+  THE_SHELL='/opt/homebrew/bin/fish'
+else
+  THE_SHELL='/bin/fish'
 fi
 
 # installing plugins
