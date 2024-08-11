@@ -12,17 +12,17 @@ if ! command -v emacs &>/dev/null; then
 
         . /etc/os-release
 
-        if [ "$ID_LIKE" = "debian" ]; then
-            sudo apt update
-            sudo apt install -y emacs
-
-        elif [ "$ID" = "fedora" ]; then
+        if [ "$ID" = "fedora" ]; then
             dnf check-update
             sudo dnf install -y emacs
 
         elif [ "$ID" = "opensuse" ]; then
             sudo zypper refresh
             sudo zypper install emacs
+
+        elif [ "$ID_LIKE" = "debian" ]; then
+            sudo apt update
+            sudo apt install -y emacs
 
         elif [ "$ID_LIKE" = "arch" ]; then
             sudo pacman -Sy --noconfirm emacs

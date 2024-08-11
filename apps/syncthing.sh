@@ -11,7 +11,15 @@ else
 
     . /etc/os-release
 
-    if [ "$ID_LIKE" = "debian" ]; then
+    if [ "$ID" = "fedora" ]; then
+        dnf check-update
+        sudo dnf install -y syncthing
+
+    elif [ "$ID" = "opensuse" ]; then
+        sudo zypper refresh
+        sudo zypper install syncthing
+
+    elif [ "$ID_LIKE" = "debian" ]; then
         sudo apt install -y curl
 
         # Add the release PGP keys:
@@ -24,14 +32,6 @@ else
         # Update and install syncthing:
         sudo apt-get update
         sudo apt-get install -y syncthing
-
-    elif [ "$ID" = "fedora" ]; then
-        dnf check-update
-        sudo dnf install -y syncthing
-
-    elif [ "$ID" = "opensuse" ]; then
-        sudo zypper refresh
-        sudo zypper install syncthing
 
     elif [ "$ID_LIKE" = "arch" ]; then
         sudo pacman -Sy --noconfirm syncthing
