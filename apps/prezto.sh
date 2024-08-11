@@ -12,7 +12,7 @@ if ! command -v zsh &>/dev/null; then
 	else
 	  . /etc/os-release
 
-		if [ "ID_LIKE" = "debian" ]; then
+		if [ "$ID_LIKE" = "debian" ]; then
 			sudo apt update
 			sudo apt install -y zsh git
 		elif [ "$ID" = "fedora" ]; then
