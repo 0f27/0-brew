@@ -6,14 +6,17 @@ if ! command -v fish &>/dev/null; then
   if [[ $(uname -o) == "Darwin" ]]; then
     echo macOS detected
     brew install fish
+    THE_SHELL='/opt/homebrew/bin/fish'
 
   elif [[ $(uname -o) == "Android" ]]; then
     echo Termux detected
     apt update
     apt install -y fish
+    THE_SHELL='/bin/fish'
 
   else
     echo assuming GNU Linux
+    THE_SHELL='/bin/fish'
 
     . /etc/os-release
 
@@ -58,7 +61,7 @@ if ! command -v fish &>/dev/null; then
 fi
 
 # installing plugins
-/bin/fish <<'EOF'
+$THE_SHELL <<'EOF'
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 fisher install jethrokuan/z
 EOF
