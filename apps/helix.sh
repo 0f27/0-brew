@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# installing Helix itself, if not available
 if ! command -v hx &>/dev/null; then
   if [[ $(uname -o) == "Darwin" ]]; then
   	brew install helix
@@ -33,6 +34,7 @@ if ! command -v hx &>/dev/null; then
   fi
 fi
 
+# adding basic example config
 mkdir -p ~/.config/helix
 cat <<'EOF' >~/.config/helix/config.toml
 theme="dark_plus"
@@ -50,3 +52,17 @@ j = { j = "normal_mode" }
 [keys.normal]
 C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw", ":reload-all"]
 EOF
+
+# setting as default editor
+if ! grep -q 'set -Ux EDITOR hx' $HOME/.config/fish/config.fish; then
+  mkdir -p $HOME/.config/fish
+  echo 'set -Ux EDITOR hx' >> $HOME/.config/fish/config.fish
+fi
+
+if ! grep -q 'export EDITOR=hx' $HOME/.zshrc; then
+  echo 'export EDITOR=hx' >> $HOME/.zshrc
+fi
+
+if ! grep -q 'export EDITOR=hx' $HOME/.bashrc; then
+  echo 'export EDITOR=hx' >> $HOME/.bashrc
+fi
