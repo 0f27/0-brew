@@ -74,6 +74,9 @@ if [[ $(uname -o) == "Darwin" ]]; then
   if ! grep -q /opt/homebrew/bin $FISH_CONFIG_FILE; then
       echo "set -a fish_user_paths /opt/homebrew/bin" >> "$FISH_CONFIG_FILE"
   fi
+  if ! grep -q /usr/local/bin $FISH_CONFIG_FILE; then
+      echo "set -a fish_user_paths /usr/local/bin" >> "$FISH_CONFIG_FILE"
+  fi
 else
   THE_SHELL='/bin/fish'
 fi
