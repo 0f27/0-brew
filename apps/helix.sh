@@ -50,6 +50,13 @@ cursorline = true
 j = { j = "normal_mode" }
 
 [keys.normal]
+#like c-d in vscode
+"C-n" = [
+  "move_prev_word_start",
+  "move_next_word_end",
+  "search_selection",
+  "extend_search_next",
+]
 C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw", ":reload-all"]
 EOF
 
