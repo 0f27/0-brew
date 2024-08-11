@@ -57,7 +57,20 @@ if ! command -v fish &>/dev/null; then
   sudo sed -i "s|^\($USER.*\)/bin/zsh|\1/bin/fish|" /etc/passwd
 fi
 
+# installing plugins
 /bin/fish <<'EOF'
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 fisher install jethrokuan/z
 EOF
+
+# setting PATH
+PATH_TO_ADD="$HOME/.local/bin"
+FISH_CONFIG_FILE="$HOME/.config/fish/config.fish"
+
+is_path_set() {
+  grep -q "$PATH_TO_ADD" "$FISH_CONFIG_FILE"
+}
+
+if ! is_path_set; then
+    echo "set -a fish_user_paths $PATH_TO_ADD" >> "$FISH_CONFIG_FILE"
+fi
