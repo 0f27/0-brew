@@ -48,7 +48,7 @@ if ! command -v fish &>/dev/null; then
       sudo zypper install fish
 
     elif [ "$ID_LIKE" = "arch" ]; then
-      sudo pacman -Sy fish
+      sudo pacman -Sy --noconfirm fish
 
     fi
   fi
