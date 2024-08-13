@@ -26,7 +26,12 @@ if ! command -v fish &>/dev/null; then
       sudo pacman -Sy --noconfirm zellij
 
     else
-      echo $ID currently not implemented, to do
+      ARCHIVE="zellij-$(uname -m)-unknown-linux-musl.tar.gz"
+      URL="https://github.com/zellij-org/zellij/releases/latest/download/$ARCHIVE"
+      wget $URL
+      mkdir -p $HOME/.local/bin
+      tar xf $ARCHIVE -C "$HOME/.local/bin/"
+      rm -rf $ARCHIVE
 
     fi
   fi
