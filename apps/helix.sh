@@ -34,34 +34,6 @@ if ! command -v hx &>/dev/null; then
   fi
 fi
 
-# adding basic example config
-mkdir -p ~/.config/helix
-cat <<'EOF' >~/.config/helix/config.toml
-theme="dark_plus"
-
-[editor.cursor-shape]
-insert = "bar"
-
-[editor]
-bufferline = "multiple"
-cursorline = true
-
-[keys.insert]
-j = { j = "normal_mode" }
-
-[keys.normal]
-#like c-d in vscode
-"C-n" = [
-  "move_prev_word_start",
-  "move_next_word_end",
-  "search_selection",
-  "extend_search_next",
-]
-A-z = [ ":toggle-option soft-wrap.enable", ":redraw" ]
-
-[keys.normal.'space'.'space']
-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw", ":reload-all"]
-EOF
 
 # setting as default editor
 # EDITOR
@@ -91,3 +63,34 @@ fi
 if ! grep -q 'export VISUAL' $HOME/.bashrc; then
   echo 'export VISUAL=hx' >> $HOME/.bashrc
 fi
+
+# adding basic example config
+mkdir -p ~/.config/helix
+
+cat <<'EOF' >~/.config/helix/config.toml
+theme="dark_plus"
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor]
+bufferline = "multiple"
+cursorline = true
+
+[keys.insert]
+j = { j = "normal_mode" }
+
+[keys.normal]
+#like c-d in vscode
+"C-n" = [
+  "move_prev_word_start",
+  "move_next_word_end",
+  "search_selection",
+  "extend_search_next",
+]
+A-z = [ ":toggle-option soft-wrap.enable", ":redraw" ]
+
+[keys.normal.'space'.'space']
+g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw", ":reload-all"]
+EOF
+
