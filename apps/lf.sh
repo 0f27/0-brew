@@ -12,7 +12,7 @@ if ! command -v lf &>/dev/null; then
 		. /etc/os-release
 
 		if [ "$ID_LIKE" = "arch" ]; then
-		    sudo pacman -Sy lf
+		    sudo pacman -Sy --noconfirm lf
 		elif [[ "$(uname -m)" == "x86_64" ]]; then
 			URL="https://github.com/gokcehan/lf/releases/latest/download/lf-linux-amd64.tar.gz"
 		elif [[ "$(uname -m)" == "aarch64" ]]; then
