@@ -14,7 +14,8 @@ if ! command -v serpl &>/dev/null; then
     if [ "$ID_LIKE" = "arch" ]; then
       sudo pacman -Sy --noconfirm serpl
 
-    else to be implemented for $ID
+    else
+      echo to be implemented for $ID
 
     fi
   fi
