@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if ! command -v fish &>/dev/null; then
+if ! command -v zellij &>/dev/null; then
   echo No Zellij found, installing...
 
   if [[ $(uname -o) == "Darwin" ]]; then
