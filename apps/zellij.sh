@@ -26,7 +26,7 @@ if ! command -v fish &>/dev/null; then
       sudo pacman -Sy --noconfirm zellij
 
     else
-      echo $ID currently not umolemented, to do
+      echo $ID currently not implemented, to do
 
     fi
   fi
