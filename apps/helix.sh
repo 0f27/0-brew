@@ -57,8 +57,10 @@ j = { j = "normal_mode" }
   "search_selection",
   "extend_search_next",
 ]
-C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw", ":reload-all"]
 A-z = [ ":toggle-option soft-wrap.enable", ":redraw" ]
+
+[keys.normal.'space'.'space']
+g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw", ":reload-all"]
 EOF
 
 # setting as default editor
