@@ -15,7 +15,18 @@ if ! command -v serpl &>/dev/null; then
       sudo pacman -Sy --noconfirm serpl
 
     else
-      echo to be implemented for $ID
+      VERSION="$(curl -sL https://github.com/yassinebridi/serpl/releases | grep '/yassinebridi/serpl/releases/download/' | head -n 1 | cut -d '/' -f6)"
+  		if [[ "$(uname -m)" == "x86_64" ]]; then
+  		  ARCH="x86_64"
+  		elif [[ "$(uname -m)" == "aarch64" ]]; then
+    		ARCH="arm64"
+  		fi
+    	ARCHIVE="serpl-$VERSION-linux-$ARCH.tar.gz"
+    	URL="https://github.com/yassinebridi/serpl/releases/download/$VERSION/$ARCHIVE"
+    	wget $URL
+    	mkdir -p "$HOME/.local/bin"
+      tar xf $ARCHIVE -C "$HOME/.local/bin/"
+      rm -rf $ARCHIVE
 
     fi
   fi
