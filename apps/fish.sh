@@ -66,6 +66,8 @@ fi
 PATH_TO_ADD="$HOME/.local/bin"
 FISH_CONFIG_FILE="$HOME/.config/fish/config.fish"
 
+mkdir -p "$HOME/.config/fish"
+
 is_path_set() {
   grep -q "$PATH_TO_ADD" "$FISH_CONFIG_FILE"
 }
