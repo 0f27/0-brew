@@ -10,7 +10,7 @@ else
   . /etc/os-release
 
   # installing pre-requisites
-  if [[ "$ID" == "ubuntu" ]]; then
+  if [[ "$ID" == "ubuntu" || "$ID_LIKE" == "ubuntu debian" ]]; then
     sudo apt install -y \
       wget \
       qemu-kvm \

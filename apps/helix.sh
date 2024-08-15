@@ -13,7 +13,7 @@ if ! command -v hx &>/dev/null; then
 
     . /etc/os-release
 
-    if [ "$ID" == "ubuntu" ]; then
+    if [[ "$ID" == "ubuntu" || "$ID_LIKE" == "ubuntu debian" ]]; then
 
       sudo add-apt-repository ppa:maveonair/helix-editor
       sudo apt update
@@ -28,7 +28,18 @@ if ! command -v hx &>/dev/null; then
       sudo ln -s /usr/bin/helix /usr/bin/hx
 
     else
-      echo $ID not suppotred
+      VERSION="$(curl -sL https://github.com/helix-editor/helix/releases | grep 'helix/releases/expanded_assets' | head -n1 | cut -d '"' -f 6 | cut -d '/' -f8)"
+      ARCH="$(uname -m)"
+    	ARCHIVE="helix-$VERSION-$ARCH-linux.tar.xz"
+    	EXTRACTION_FOLDER="$(echo $ARCHIVE | sed 's/.tar.xz$//')"
+    	URL="https://github.com/helix-editor/helix/releases/download/$VERSION/$ARCHIVE"
+    	wget $URL
+
+    	mkdir -p "$HOME/.local/bin" "$HOME/.opt" "$HOME/.config/helix"
+      tar xf $ARCHIVE -C "$HOME/.opt"
+      ln -s "$HOME/.opt/$EXTRACTION_FOLDER/hx" "$HOME/.local/bin/hx"
+      ln -s "$HOME/.opt/$EXTRACTION_FOLDER/runtime" "$HOME/.config/helix/runtime"
+      rm -rf $ARCHIVE
 
     fi
   fi
