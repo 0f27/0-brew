@@ -13,15 +13,15 @@ if ! command -v hx &>/dev/null; then
 
     . /etc/os-release
 
-    if [[ "$ID" == "ubuntu" || "$ID_LIKE" == "ubuntu debian" ]]; then
+    if [ "$ID" = "fedora" ]; then
+      dnf check-update
+      sudo dnf install -y helix
+
+    elif [[ "$ID" == "ubuntu" || "$ID_LIKE" == "ubuntu debian" ]]; then
 
       sudo add-apt-repository ppa:maveonair/helix-editor
       sudo apt update
       sudo apt install -y helix
-
-    elif [ "$ID" = "fedora" ]; then
-      dnf check-update
-      sudo dnf install -y helix
 
     elif [ "$ID_LIKE" = "arch" ]; then
       sudo pacman -Sy --noconfirm helix
