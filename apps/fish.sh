@@ -30,6 +30,11 @@ if ! command -v fish &>/dev/null; then
       fi
       sudo apt update
       sudo apt install -y fish
+    elif [ "$ID" = "kali" ]; then
+      echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_12/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
+      curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_12/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg >/dev/null
+      sudo apt update
+      sudo apt install -y fish
     elif [[ "$ID" == "ubuntu" || "$ID_LIKE" == "ubuntu debian" ]]; then
       if [ "$VERSION_ID" = "24.04" ]; then
         sudo apt update
