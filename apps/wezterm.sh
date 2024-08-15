@@ -28,6 +28,7 @@ else
 
 # config
 
+mkdir -p ~/.config/wezterm
 cat <<'EOF' >~/.config/wezterm/wezterm.lua
 local wezterm = require("wezterm")
 local config = {}
