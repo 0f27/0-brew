@@ -31,7 +31,9 @@ if ! command -v emacs &>/dev/null; then
     fi
 fi
 
-mkdir -p ~/.config
-rm -rf ~/.emacs ~/.emacs.d ~/.config/emacs
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
-~/.config/emacs/bin/doom install --env -!
+if [ ! -f $HOME/.config/emacs/bin/doom ]; then
+    mkdir -p $HOME/.config
+    rm -rf $HOME/.emacs $HOME/.emacs.d $HOME/.config/emacs
+    git clone --depth 1 https://github.com/doomemacs/doomemacs $HOME/.config/emacs
+    $HOME/.config/emacs/bin/doom install --env -!
+fi
