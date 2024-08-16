@@ -20,7 +20,7 @@ if ! command -v zsh &>/dev/null; then
 			sudo dnf install -y zsh git
 		elif [ "$ID_LIKE" = "opensuse suse" ]; then
 			sudo zypper refresh
-			sudo zypper install zsh git
+			sudo zypper --non-interactive install zsh git
 		elif [ "$ID_LIKE" = "arch" ]; then
 			sudo pacman -Sy zsh git
 		fi

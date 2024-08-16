@@ -50,7 +50,7 @@ if ! command -v fish &>/dev/null; then
 
     elif [ "$ID_LIKE" = "opensuse suse" ]; then
       sudo zypper refresh
-      sudo zypper install fish
+      sudo zypper --non-interactive install fish
 
     elif [ "$ID_LIKE" = "arch" ]; then
       sudo pacman -Sy --noconfirm fish

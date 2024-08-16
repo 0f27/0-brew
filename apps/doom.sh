@@ -18,7 +18,7 @@ if ! command -v emacs &>/dev/null; then
 
         elif [ "$ID_LIKE" = "opensuse suse" ]; then
             sudo zypper refresh
-            sudo zypper install emacs
+            sudo zypper --non-interactive install emacs
 
         elif [ "$ID_LIKE" = "debian" ]; then
             sudo apt update

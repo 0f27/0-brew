@@ -22,7 +22,7 @@ else
         sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/zypp/repos.d/vscode.repo'
 
         sudo zypper refresh
-        sudo zypper install code
+        sudo zypper --non-interactive install code
 
     elif [[ "ID" == "ubuntu" || "ID" == "debian" || "$ID_LIKE" == "debian" || "$ID_LIKE" == "ubuntu debian" ]]; then
         sudo apt-get install -y wget gpg
