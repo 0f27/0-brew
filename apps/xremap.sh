@@ -101,7 +101,7 @@ systemctl enable --now --user xremap
 # adding user to input group, to avoid using sudo
 . /etc/os-release
 sudo gpasswd -a $USER input
-if [[ "$ID" == "ubuntu" || "$ID" == "debian" ]]; then
+if [[ "ID" == "ubuntu" || "ID" == "debian" || "$ID_LIKE" == "debian" || "$ID_LIKE" == "ubuntu debian" ]]; then
 	echo 'KERNEL=="uinput", GROUP="input", TAG+="uaccess"' | sudo tee /etc/udev/rules.d/input.rules
 elif [ "$ID_LIKE" = "arch" ]; then
 	echo 'KERNEL=="uinput", GROUP="input", TAG+="uaccess"' | sudo tee /etc/udev/rules.d/99-input.rules
