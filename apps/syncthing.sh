@@ -19,7 +19,7 @@ else
         sudo zypper refresh
         sudo zypper install syncthing
 
-    elif [ "$ID_LIKE" = "debian" ]; then
+    elif [[ "ID" == "ubuntu" || "ID" == "debian" || "$ID_LIKE" == "debian" || "$ID_LIKE" == "ubuntu debian" ]]; then
         sudo apt install -y curl
 
         # Add the release PGP keys:
