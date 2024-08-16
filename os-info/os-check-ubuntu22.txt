@@ -1,0 +1,17 @@
+architecture: ('64bit', 'ELF')
+system: Linux
+machine: x86_64
+
+os release file:
+{'BUG_REPORT_URL': 'https://bugs.launchpad.net/ubuntu/',
+ 'HOME_URL': 'https://www.ubuntu.com/',
+ 'ID': 'ubuntu',
+ 'ID_LIKE': 'debian',
+ 'NAME': 'Ubuntu',
+ 'PRETTY_NAME': 'Ubuntu 22.04.4 LTS',
+ 'PRIVACY_POLICY_URL': 'https://www.ubuntu.com/legal/terms-and-policies/privacy-policy',
+ 'SUPPORT_URL': 'https://help.ubuntu.com/',
+ 'UBUNTU_CODENAME': 'jammy',
+ 'VERSION': '22.04.4 LTS (Jammy Jellyfish)',
+ 'VERSION_CODENAME': 'jammy',
+ 'VERSION_ID': '22.04'}

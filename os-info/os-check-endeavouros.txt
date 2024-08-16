@@ -1,0 +1,17 @@
+architecture: ('64bit', 'ELF')
+system: Linux
+machine: x86_64 
+
+os release file:
+{'ANSI_COLOR': '38;2;23;147;209',
+ 'BUG_REPORT_URL': 'https://forum.endeavouros.com/c/general-system/endeavouros-installation',
+ 'BUILD_ID': 'rolling',
+ 'DOCUMENTATION_URL': 'https://discovery.endeavouros.com',
+ 'HOME_URL': 'https://endeavouros.com',
+ 'ID': 'endeavouros',
+ 'ID_LIKE': 'arch',
+ 'LOGO': 'endeavouros',
+ 'NAME': 'EndeavourOS',
+ 'PRETTY_NAME': 'EndeavourOS',
+ 'PRIVACY_POLICY_URL': 'https://endeavouros.com/privacy-policy-2',
+ 'SUPPORT_URL': 'https://forum.endeavouros.com'}

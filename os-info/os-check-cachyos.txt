@@ -1,0 +1,18 @@
+architecture: ('64bit', 'ELF')
+system: Linux
+machine: x86_64
+
+os release file:
+{'ANSI_COLOR': '38;2;23;147;209',
+ 'BUG_REPORT_URL': 'https://github.com/cachyos',
+ 'BUILD_ID': 'rolling',
+ 'DOCUMENTATION_URL': 'https://wiki.cachyos.org/',
+ 'HOME_URL': 'https://cachyos.org/',
+ 'ID': 'cachyos',
+ 'ID_LIKE': 'arch',
+ 'IMAGE_ID': 'cachyos',
+ 'IMAGE_VERSION': '2024.07.14',
+ 'LOGO': 'cachyos',
+ 'NAME': 'CachyOS Linux',
+ 'PRETTY_NAME': 'CachyOS',
+ 'SUPPORT_URL': 'https://forum.cachyos.org/'}

@@ -1,0 +1,18 @@
+architecture: ('64bit', 'ELF')
+system: Linux
+machine: x86_64
+
+os release file:
+{'BUG_REPORT_URL': 'https://github.com/pop-os/pop/issues',
+ 'HOME_URL': 'https://pop.system76.com',
+ 'ID': 'pop',
+ 'ID_LIKE': 'ubuntu debian',
+ 'LOGO': 'distributor-logo-pop-os',
+ 'NAME': 'Pop!_OS',
+ 'PRETTY_NAME': 'Pop!_OS 24.04 LTS',
+ 'PRIVACY_POLICY_URL': 'https://system76.com/privacy',
+ 'SUPPORT_URL': 'https://support.system76.com',
+ 'UBUNTU_CODENAME': 'noble',
+ 'VERSION': '24.04 LTS',
+ 'VERSION_CODENAME': 'noble',
+ 'VERSION_ID': '24.04'}

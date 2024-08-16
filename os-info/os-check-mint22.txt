@@ -1,0 +1,17 @@
+architecture: ('64bit', 'ELF')
+system: Linux
+machine: x86_64
+
+os release file:
+{'BUG_REPORT_URL': 'http://linuxmint-troubleshooting-guide.readthedocs.io/en/latest/',
+ 'HOME_URL': 'https://www.linuxmint.com/',
+ 'ID': 'linuxmint',
+ 'ID_LIKE': 'ubuntu debian',
+ 'NAME': 'Linux Mint',
+ 'PRETTY_NAME': 'Linux Mint 22',
+ 'PRIVACY_POLICY_URL': 'https://www.linuxmint.com/',
+ 'SUPPORT_URL': 'https://forums.linuxmint.com/',
+ 'UBUNTU_CODENAME': 'noble',
+ 'VERSION': '22 (Wilma)',
+ 'VERSION_CODENAME': 'wilma',
+ 'VERSION_ID': '22'}

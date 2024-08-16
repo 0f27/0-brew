@@ -1,0 +1,17 @@
+architecture: ('64bit', 'ELF')
+system: Linux
+machine: x86_64
+
+os release file:
+{'ANSI_COLOR': '38;2;23;147;209',
+ 'BUG_REPORT_URL': 'https://gitlab.com/groups/garuda-linux/',
+ 'BUILD_ID': 'rolling',
+ 'DOCUMENTATION_URL': 'https://wiki.garudalinux.org/',
+ 'HOME_URL': 'https://garudalinux.org/',
+ 'ID': 'garuda',
+ 'ID_LIKE': 'arch',
+ 'LOGO': 'garudalinux',
+ 'NAME': 'Garuda Linux',
+ 'PRETTY_NAME': 'Garuda Linux',
+ 'PRIVACY_POLICY_URL': 'https://terms.archlinux.org/docs/privacy-policy/',
+ 'SUPPORT_URL': 'https://forum.garudalinux.org/'}
