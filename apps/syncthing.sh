@@ -15,7 +15,7 @@ else
         dnf check-update
         sudo dnf install -y syncthing
 
-    elif [ "$ID" = "opensuse" ]; then
+    elif [ "$ID_LIKE" = "opensuse suse" ]; then
         sudo zypper refresh
         sudo zypper install syncthing
 

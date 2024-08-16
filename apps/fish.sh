@@ -48,7 +48,7 @@ if ! command -v fish &>/dev/null; then
       dnf check-update
       sudo dnf install -y fish
 
-    elif [ "$ID" = "opensuse" ]; then
+    elif [ "$ID_LIKE" = "opensuse suse" ]; then
       sudo zypper refresh
       sudo zypper install fish
 

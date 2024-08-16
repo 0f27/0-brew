@@ -18,7 +18,7 @@ if ! command -v zsh &>/dev/null; then
 		elif [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" ]]; then
 			dnf check-update
 			sudo dnf install -y zsh git
-		elif [ "$ID" = "opensuse" ]; then
+		elif [ "$ID_LIKE" = "opensuse suse" ]; then
 			sudo zypper refresh
 			sudo zypper install zsh git
 		elif [ "$ID_LIKE" = "arch" ]; then

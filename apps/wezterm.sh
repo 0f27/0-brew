@@ -15,7 +15,7 @@ else
   if [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" ]]; then
     sudo dnf copr enable wezfurlong/wezterm-nightly
     sudo dnf install -y wezterm
-  elif [ "$ID" = "opensuse" ]; then
+  elif [ "$ID_LIKE" = "opensuse suse" ]; then
     zypper install wezterm
   elif [ "$ID_LIKE" = "debian" ]; then
     curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg

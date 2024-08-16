@@ -16,7 +16,7 @@ if ! command -v emacs &>/dev/null; then
             dnf check-update
             sudo dnf install -y emacs
 
-        elif [ "$ID" = "opensuse" ]; then
+        elif [ "$ID_LIKE" = "opensuse suse" ]; then
             sudo zypper refresh
             sudo zypper install emacs
 

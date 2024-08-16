@@ -10,7 +10,7 @@ else
 
 	. /etc/os-release
 
-	if [[ "$ID" = "fedora" || "$ID" = "opensuse" ]]; then
+	if [[ "$ID" = "fedora" || "$ID_LIKE" = "opensuse suse" ]]; then
 		sudo rpm --import https://releases.warp.dev/linux/keys/warp.asc
 		sudo sh -c 'echo -e "[warpdotdev]\nname=warpdotdev\nbaseurl=https://releases.warp.dev/linux/rpm/stable\nenabled=1\ngpgcheck=1\ngpgkey=https://releases.warp.dev/linux/keys/warp.asc" > /etc/yum.repos.d/warpdotdev.repo'
 		sudo dnf install -y warp-terminal

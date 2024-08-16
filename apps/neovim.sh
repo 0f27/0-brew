@@ -13,7 +13,7 @@ else
     dnf check-update
     sudo dnf install -y neovim
 
-	elif [ "$ID" = "opensuse" ]; then
+	elif [ "$ID_LIKE" = "opensuse suse" ]; then
     sudo zypper refresh
     sudo zypper install neovim
 
