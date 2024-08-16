@@ -18,7 +18,7 @@
 - [x] Debian 12
 - [x] Pop OS 24
 - [ ] Fedora
-- [ ] Silverblue
+- [x] Silverblue
 - [ ] Kubuntu
 - [x] Kali
 - [x] EndeavourOS

@@ -1,0 +1,28 @@
+architecture: ('64bit', 'ELF')
+system: Linux
+machine: x86_64
+
+os release file:
+{'ANSI_COLOR': '0;38;2;60;110;180',
+ 'BUG_REPORT_URL': 'https://github.com/fedora-silverblue/issue-tracker/issues',
+ 'CPE_NAME': 'cpe:/o:fedoraproject:fedora:40',
+ 'DEFAULT_HOSTNAME': 'fedora',
+ 'DOCUMENTATION_URL': 'https://docs.fedoraproject.org/en-US/fedora-silverblue/',
+ 'HOME_URL': 'https://silverblue.fedoraproject.org',
+ 'ID': 'fedora',
+ 'LOGO': 'fedora-logo-icon',
+ 'NAME': 'Fedora Linux',
+ 'OSTREE_VERSION': "'40.1.14'",
+ 'PLATFORM_ID': 'platform:f40',
+ 'PRETTY_NAME': 'Fedora Linux 40.1.14 (Silverblue)',
+ 'REDHAT_BUGZILLA_PRODUCT': 'Fedora',
+ 'REDHAT_BUGZILLA_PRODUCT_VERSION': '40',
+ 'REDHAT_SUPPORT_PRODUCT': 'Fedora',
+ 'REDHAT_SUPPORT_PRODUCT_VERSION': '40',
+ 'SUPPORT_END': '2025-05-13',
+ 'SUPPORT_URL': 'https://ask.fedoraproject.org/',
+ 'VARIANT': 'Silverblue',
+ 'VARIANT_ID': 'silverblue',
+ 'VERSION': '40.1.14 (Silverblue)',
+ 'VERSION_CODENAME': '',
+ 'VERSION_ID': '40'}
