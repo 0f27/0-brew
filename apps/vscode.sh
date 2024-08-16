@@ -38,6 +38,8 @@ else
     elif [ "$ID_LIKE" = "arch" ]; then
         paru -Sy --noconfirm visual-studio-code-bin
 
-    fi
+    else
+        echo currently not implemented for $ID
 
+    fi
 fi
