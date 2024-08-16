@@ -3,7 +3,7 @@
 import json
 
 
-def get_os_info(info_file):
+def get_os_info_from_file(info_file):
     with open(info_file, "r") as f:
         os_info = f.read()
 
@@ -14,4 +14,4 @@ def get_os_info(info_file):
 if __name__ == "__main__":
     from pprint import pprint
 
-    pprint(get_os_info("os-check-thumbleweed.txt"))
+    pprint(get_os_info_from_file("os-check-thumbleweed.txt"))
