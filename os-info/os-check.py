@@ -36,7 +36,7 @@ from platform import (
 )
 
 
-def get_os_release(filepath="/etc/os-release"):
+def get_os_info_from_os(filepath="/etc/os-release"):
     if system() == "Linux":
         with open(filepath, "r") as f:
             osrelease = dict(
@@ -58,6 +58,6 @@ if __name__ == "__main__":
     print("system:", system())
     print("machine:", machine(), "\n")
 
-    osrelease = get_os_release()
+    osrelease = get_os_info_from_os()
     print("os release file:")
     pprint(osrelease)
