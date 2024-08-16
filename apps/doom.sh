@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 if ! command -v emacs &>/dev/null; then
     if [[ $(uname -o) == "Darwin" ]]; then
