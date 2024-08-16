@@ -21,7 +21,6 @@ if ! command -v lf &>/dev/null; then
 		archiveName="$(echo $URL | cut -d'/' -f9)"
 
 		mkdir -p "$HOME/.local/bin"
-		rm -rf "$HOME/.local/bin/lf"
 		wget $URL
 		tar xf $archiveName -C "$HOME/.local/bin/"
 		rm -rf $archiveName
