@@ -15,7 +15,7 @@ if ! command -v zsh &>/dev/null; then
 		if [ "$ID_LIKE" = "debian" ]; then
 			sudo apt update
 			sudo apt install -y zsh git
-		elif [ "$ID" = "fedora" ]; then
+		elif [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" ]]; then
 			dnf check-update
 			sudo dnf install -y zsh git
 		elif [ "$ID" = "opensuse" ]; then

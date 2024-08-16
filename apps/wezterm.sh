@@ -12,7 +12,7 @@ else
 
   # wezterm itself
 
-  if [ "$ID" = "fedora" ]; then
+  if [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" ]]; then
     sudo dnf copr enable wezfurlong/wezterm-nightly
     sudo dnf install -y wezterm
   elif [ "$ID" = "opensuse" ]; then

@@ -17,7 +17,7 @@ if ! command -v zellij &>/dev/null; then
 
     . /etc/os-release
   
-    if [ "$ID" = "fedora" ]; then
+    if [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" ]]; then
       dnf check-update
       sudo dnf copr enable varlad/zellij 
       sudo dnf install -y zellij

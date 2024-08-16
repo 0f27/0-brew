@@ -13,7 +13,7 @@ if ! command -v hx &>/dev/null; then
 
     . /etc/os-release
 
-    if [ "$ID" = "fedora" ]; then
+    if [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" ]]; then
       dnf check-update
       sudo dnf install -y helix
 

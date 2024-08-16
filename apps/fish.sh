@@ -44,7 +44,7 @@ if ! command -v fish &>/dev/null; then
         sudo apt update
         sudo apt install -y fish
       fi
-    elif [ "$ID" = "fedora" ]; then
+    elif [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" ]]; then
       dnf check-update
       sudo dnf install -y fish
 
