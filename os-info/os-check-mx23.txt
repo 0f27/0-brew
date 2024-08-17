@@ -1,0 +1,14 @@
+architecture: ('64bit', 'ELF')
+system: Linux
+machine: x86_64 
+
+os release file:
+{'BUG_REPORT_URL': 'https://bugs.debian.org/',
+ 'HOME_URL': 'https://www.debian.org/',
+ 'ID': 'debian',
+ 'NAME': 'Debian GNU/Linux',
+ 'PRETTY_NAME': 'Debian GNU/Linux 12 (bookworm)',
+ 'SUPPORT_URL': 'https://www.debian.org/support',
+ 'VERSION': '12 (bookworm)',
+ 'VERSION_CODENAME': 'bookworm',
+ 'VERSION_ID': '12'}

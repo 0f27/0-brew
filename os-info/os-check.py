@@ -17,14 +17,14 @@
 - [x] Ubuntu 24.04
 - [x] Debian 12
 - [x] Pop OS 24
-- [ ] Fedora
+- [x] Fedora
 - [x] Silverblue
-- [ ] Kubuntu
+- [x] Kubuntu
 - [x] Kali
 - [x] EndeavourOS
 - [x] CachyOS
 - [x] Manjaro
-- [ ] MX Linux
+- [x] MX Linux
 - [x] OpenSuse Thumbleweed
 - [x] Garuda
 """
