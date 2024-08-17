@@ -21,7 +21,7 @@ else
       wget \
       qemu-{user,system{,-gui},utils} \
       genisoimage
-  elif [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" ]]; then
+  elif [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" && "$VARIANT_ID" != "kinoite" ]]; then
     sudo dnf install -y \
       wget \
       edk2-ovmf \

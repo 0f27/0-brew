@@ -9,7 +9,7 @@ elif [[ $(uname -o) == "Android" ]]; then
 
 else
 
-	if [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" ]]; then
+	if [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" && "$VARIANT_ID" != "kinoite" ]]; then
     dnf check-update
     sudo dnf install -y neovim
 

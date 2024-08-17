@@ -12,7 +12,7 @@ if ! command -v emacs &>/dev/null; then
 
         . /etc/os-release
 
-        if [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" ]]; then
+        if [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" && "$VARIANT_ID" != "kinoite" ]]; then
             dnf check-update
             sudo dnf install -y emacs
 

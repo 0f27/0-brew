@@ -9,7 +9,7 @@ else
 
 	. /etc/os-release
 
-	if [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" ]]; then
+	if [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" && "$VARIANT_ID" != "kinoite" ]]; then
 		sudo dnf install -y fontconfig-devel freetype-devel libX11-xcb libX11-devel libstdc++-static libstdc++-devel
 		sudo dnf groupinstall -y "Development Tools" "Development Libraries"
 		curl --proto '=https' --tlsv1.2 -sSf "https://sh.rustup.rs" | sh

@@ -11,7 +11,7 @@ if ! command -v lazygit &>/dev/null; then
   else
 		. /etc/os-release
 
-	if [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" ]]; then
+	if [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" && "$VARIANT_ID" != "kinoite" ]]; then
 		sudo dnf copr enable atim/lazygit -y
 		sudo dnf install -y lazygit
 	elif [ "$ID_LIKE" = "arch" ]; then
