@@ -15,7 +15,7 @@ else
       wget \
       qemu-kvm \
       genisoimage
-  elif [ "$ID" = "debian" ]; then
+  elif [[ "$ID" == "debian" || "$ID" == "kali" ]]; then
     sudo apt update
     sudo apt install -y \
       wget \

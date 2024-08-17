@@ -20,7 +20,7 @@ if ! command -v emacs &>/dev/null; then
             sudo zypper refresh
             sudo zypper --non-interactive install emacs
 
-        elif [ "$ID_LIKE" = "debian" ]; then
+        elif [[ "$ID" == "debian" || "$ID_LIKE" == "debian" || "$ID_LIKE" == "ubuntu debian" ]]; then
             sudo apt update
             sudo apt install -y emacs
 

@@ -12,7 +12,7 @@ if ! command -v zsh &>/dev/null; then
 	else
 	  . /etc/os-release
 
-		if [ "$ID_LIKE" = "debian" ]; then
+		if [[ "$ID" == "debian" || "$ID_LIKE" == "debian" || "$ID_LIKE" == "ubuntu debian" ]]; then
 			sudo apt update
 			sudo apt install -y zsh git
 		elif [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" ]]; then

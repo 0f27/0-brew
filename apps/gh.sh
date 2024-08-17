@@ -16,7 +16,7 @@ if ! command -v gh &>/dev/null; then
 			sudo dnf install 'dnf-command(config-manager)'
 			sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
 			sudo dnf install -y gh
-		elif [ "$ID_LIKE" = "debian" ]; then
+		elif [[ "$ID" == "debian" || "$ID_LIKE" == "debian" || "$ID_LIKE" == "ubuntu debian" ]]; then
 			(type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y)) &&
 				sudo mkdir -p -m 755 /etc/apt/keyrings &&
 				wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg >/dev/null &&

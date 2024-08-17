@@ -14,7 +14,7 @@ else
 		sudo dnf groupinstall -y "Development Tools" "Development Libraries"
 		curl --proto '=https' --tlsv1.2 -sSf "https://sh.rustup.rs" | sh
 		cargo install --git https://github.com/neovide/neovide
-	elif [ "$ID_LIKE" = "debian" ]; then
+	elif [[ "$ID" == "debian" || "$ID_LIKE" == "debian" || "$ID_LIKE" == "ubuntu debian" ]]; then
 		sudo apt install -y curl \
 			gnupg ca-certificates git \
 			gcc-multilib g++-multilib cmake libssl-dev pkg-config \

@@ -17,7 +17,7 @@ else
     sudo dnf install -y wezterm
   elif [ "$ID_LIKE" = "opensuse suse" ]; then
     zypper --non-interactive install wezterm
-  elif [ "$ID_LIKE" = "debian" ]; then
+  elif [[ "$ID" == "debian" || "$ID_LIKE" == "debian" || "$ID_LIKE" == "ubuntu debian" ]]; then
     curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
     echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
     sudo apt update
