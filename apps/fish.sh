@@ -31,7 +31,7 @@ if ! command -v fish &>/dev/null; then
       sudo apt update
       sudo apt install -y fish
     elif [[ "$ID" == "ubuntu" || "$ID_LIKE" == "ubuntu debian" ]]; then
-      if [ "$VERSION_ID" = "24.04" ]; then
+      if [[ "$VERSION_ID" == "24.04" || "$VERSION_ID" == "22" ]]; then
         sudo apt update
         sudo apt install -y fish
       else
