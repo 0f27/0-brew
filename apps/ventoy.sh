@@ -27,6 +27,7 @@ else
   fi
 
   # unpack
-  tar xzf "$FOLDER/$FILE" -C "$FOLDER/$EXTRACT_FOLDER"
+  tar xzf "$FILE" -C "$FOLDER/$EXTRACT_FOLDER"
+  rm "$FILE"
 
 fi
