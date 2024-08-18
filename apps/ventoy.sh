@@ -16,7 +16,7 @@ else
   EXTRACT_FOLDER="$(echo $ARCHIVE | sed 's/.tar.gz$//')"
 
   # download
-  mkdir -p "OPTIONAL_SOFTWARE_FOLDER"
+  mkdir -p "$OPTIONAL_SOFTWARE_FOLDER"
   if command -v aria2c &>/dev/null; then
   	aria2c $URL
   elif command -v wget &>/dev/null; then
@@ -26,7 +26,7 @@ else
   fi
 
   # unpack
-  tar xzf "$ARCHIVE" -C "OPTIONAL_SOFTWARE_FOLDER/$EXTRACT_FOLDER"
+  tar xzf "$ARCHIVE" -C "$OPTIONAL_SOFTWARE_FOLDER/$EXTRACT_FOLDER"
   rm "$ARCHIVE"
 
 fi
