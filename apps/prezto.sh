@@ -18,6 +18,8 @@ if ! command -v zsh &>/dev/null; then
 		elif [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" && "$VARIANT_ID" != "kinoite" ]]; then
 			dnf check-update
 			sudo dnf install -y zsh git
+    elif [[ "$VARIANT_ID" == "silverblue" || "$VARIANT_ID" == "kinoite" ]]; then
+      sudo rpm-ostree install --apply-live -y zsh git
 		elif [ "$ID_LIKE" = "opensuse suse" ]; then
 			sudo zypper refresh
 			sudo zypper --non-interactive install zsh git

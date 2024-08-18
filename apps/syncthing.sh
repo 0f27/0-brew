@@ -15,6 +15,9 @@ else
         dnf check-update
         sudo dnf install -y syncthing
 
+    elif [[ "$VARIANT_ID" == "silverblue" || "$VARIANT_ID" == "kinoite" ]]; then
+        sudo rpm-ostree install --apply-live -y syncthing
+
     elif [ "$ID_LIKE" = "opensuse suse" ]; then
         sudo zypper refresh
         sudo zypper --non-interactive install syncthing
