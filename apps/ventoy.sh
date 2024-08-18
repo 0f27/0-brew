@@ -26,6 +26,7 @@ else
   fi
 
   # unpack
+  mkdir -p "$OPTIONAL_SOFTWARE_FOLDER/$EXTRACT_FOLDER"
   tar xzf "$ARCHIVE" -C "$OPTIONAL_SOFTWARE_FOLDER/$EXTRACT_FOLDER"
   rm "$ARCHIVE"
 
