@@ -10,14 +10,13 @@ else
 
   # get link and set variables
   VERSION="$(curl -sL https://github.com/ventoy/Ventoy/releases | grep -E 'Ventoy .* release' | cut -d ' ' -f 6 | head -n 1)"
-  FILE="ventoy-"$VERSION"-linux.tar.gz"
-  FOLDER="$HOME/.opt"
-  URL="https://github.com/ventoy/Ventoy/releases/download/v"$VERSION"/$FILE"
-  EXTRACT_FOLDER="$(echo $FILE | sed 's/.tar.gz$//')"
+  ARCHIVE="ventoy-"$VERSION"-linux.tar.gz"
+  OPTIONAL_SOFTWARE_FOLDER="$HOME/.opt"
+  URL="https://github.com/ventoy/Ventoy/releases/download/v"$VERSION"/$ARCHIVE"
+  EXTRACT_FOLDER="$(echo $ARCHIVE | sed 's/.tar.gz$//')"
 
   # download
-  rm -rf "$FOLDER/$FILE"
-  mkdir -p "$FOLDER"
+  mkdir -p "OPTIONAL_SOFTWARE_FOLDER"
   if command -v aria2c &>/dev/null; then
   	aria2c $URL
   elif command -v wget &>/dev/null; then
@@ -27,7 +26,7 @@ else
   fi
 
   # unpack
-  tar xzf "$FILE" -C "$FOLDER/$EXTRACT_FOLDER"
-  rm "$FILE"
+  tar xzf "$ARCHIVE" -C "OPTIONAL_SOFTWARE_FOLDER/$EXTRACT_FOLDER"
+  rm "$ARCHIVE"
 
 fi
