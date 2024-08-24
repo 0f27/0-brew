@@ -75,6 +75,16 @@ if ! grep -q 'export VISUAL' $HOME/.bashrc; then
   echo 'export VISUAL=hx' >> $HOME/.bashrc
 fi
 
+if ! grep -q '.local/bin' $HOME/.zshrc; then
+  echo 'export PATH="$HOME/.local/bin:$PATH"' >> $HOME/.zshrc
+fi
+if ! grep -q '.local/bin' $HOME/.bashrc; then
+  echo 'export PATH="$HOME/.local/bin:$PATH"' >> $HOME/.bashrc
+fi
+if ! grep -q '.local/bin' $HOME/.config/fish/config.fish; then
+  echo "set -a fish_user_paths $HOME/.local/bin" >> $HOME/.config/fish/config.fish
+fi
+
 # adding basic example config
 mkdir -p ~/.config/helix
 
