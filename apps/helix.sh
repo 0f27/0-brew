@@ -41,6 +41,10 @@ if ! command -v hx &>/dev/null; then
       ln -s "$HOME/.opt/$EXTRACTION_FOLDER/runtime" "$HOME/.config/helix/runtime"
       rm -rf $ARCHIVE
 
+      sudo mkdir /root/.config/helix
+      sudo ln -s "$HOME/.opt/$EXTRACTION_FOLDER/runtime" /root/.config/helix/runtime
+      sudo ln -s "$HOME/.opt/$EXTRACTION_FOLDER/hx" /usr/bin/hx
+
     fi
   fi
 fi
