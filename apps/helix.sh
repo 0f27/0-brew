@@ -109,7 +109,7 @@ A-z = [ ":toggle-option soft-wrap.enable", ":redraw" ]
 A-r = [ ":reload-all", ":config-reload", ":redraw" ]
 
 [keys.normal.'space'.'space']
-w = [":write", ":reload", ":redraw"]
+w = [":write", ":redraw"]
 g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw", ":reload-all"]
 EOF
 
