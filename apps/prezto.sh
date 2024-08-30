@@ -22,7 +22,7 @@ if ! command -v zsh &>/dev/null; then
       sudo rpm-ostree install --apply-live -y zsh git
 		elif [ "$ID_LIKE" = "opensuse suse" ]; then
 			sudo zypper refresh
-			sudo zypper --non-interactive install zsh git
+			sudo zypper --non-interactive --no-confirm install zsh git
 		elif [ "$ID_LIKE" = "arch" ]; then
 			sudo pacman -Sy zsh git
 		fi

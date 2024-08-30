@@ -18,7 +18,7 @@ if command -v curl &>/dev/null; then
 
     elif [ "$ID_LIKE" = "opensuse suse" ]; then
       sudo zypper refresh
-      sudo zypper --non-interactive install chezmoi
+      sudo zypper --non-interactive --no-confirm install chezmoi
 
     elif command -v curl &>/dev/null; then
       sh -c "$(curl -fsLS get.chezmoi.io)"

@@ -20,7 +20,7 @@ else
 
     elif [ "$ID_LIKE" = "opensuse suse" ]; then
         sudo zypper refresh
-        sudo zypper --non-interactive install syncthing
+        sudo zypper --non-interactive --no-confirm install syncthing
 
     elif [[ "$ID" == "debian" || "$ID_LIKE" == "debian" || "$ID_LIKE" == "ubuntu debian" ]]; then
         sudo apt install -y curl

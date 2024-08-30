@@ -15,7 +15,7 @@ else
 
 	elif [ "$ID_LIKE" = "opensuse suse" ]; then
     sudo zypper refresh
-    sudo zypper --non-interactive install neovim
+    sudo zypper --non-interactive --no-confirm install neovim
 
 	elif [ "$ID_LIKE" = "arch" ]; then
     sudo pacman -Sy --noconfirm neovim
