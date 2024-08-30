@@ -93,6 +93,7 @@ local options = {
 return options
 EOF
 
+mkdir -p ~/.config/nvchad/lua/plugins
 cat <<'EOF' >~/.config/nvchad/lua/plugins/init.lua
 return {
 	{
