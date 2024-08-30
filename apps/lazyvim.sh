@@ -15,6 +15,9 @@ EOF
 
 chmod +x ~/.local/bin/lazyvim
 ln -s ~/.local/bin/lazyvim ~/.local/bin/lvim
+if [ ! -f ~/.config/nvim/init.lua ]; then
+  ln -s ~/.config/lazyvim ~/.config/nvim
+fi
 
 (
   NVIM_APPNAME=lazyvim

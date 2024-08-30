@@ -13,6 +13,9 @@ cat <<'EOF' >~/.local/bin/nvchad
 NVIM_APPNAME=nvchad nvim $@
 EOF
 chmod +x ~/.local/bin/nvchad
+if [ ! -f ~/.config/nvim/init.lua ]; then
+  ln -s ~/.config/nvchad ~/.config/nvim
+fi
 
 git clone https://github.com/NvChad/starter ~/.config/nvchad
 rm -rf ~/.config/nvchad/.git
