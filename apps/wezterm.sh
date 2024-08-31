@@ -26,10 +26,10 @@ else
     sudo pacman -Sy --noconfirm wezterm
   fi
 
-# config
+  # config
 
-mkdir -p ~/.config/wezterm
-cat <<'EOF' >~/.config/wezterm/wezterm.lua
+  mkdir -p ~/.config/wezterm
+  cat <<'EOF' >~/.config/wezterm/wezterm.lua
 local wezterm = require("wezterm")
 local config = {}
 
@@ -83,6 +83,12 @@ config.keys = {
     key = ')',
     mods = 'CTRL|SHIFT',
     action = wezterm.action.SplitVertical {domain="CurrentPaneDomain"},
+  },
+  -- Disabling Alt-Enter as conflicting with Org-Mode
+  {
+    key = 'Enter',
+    mods = 'ALT',
+    action = wezterm.action.DisableDefaultAssignment,
   },
 }
 
