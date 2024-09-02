@@ -35,7 +35,20 @@ if ! command -v emacs &>/dev/null; then
 fi
 
 EMACS_VERSION="$(emacs --version | head -n 1 | cut -d' ' -f 3)"
-EMACS_INIT_DIRECTORY="$HOME/.opt/doom"
+
+if [ -d $HOME/.config/emacs ] && [ -f $HOME/.emacs ] && [ -d $HOME/.emacs ] && [ -d $HOME/.emacs.d ]; then
+  EMACS_INIT_DIRECTORY="$HOME/.opt/doom"
+
+  cat <<'EOF' >~/.local/bin/doom
+#!/usr/bin/env bash
+
+emacs --init-directory=$HOME/.opt/doom/.config/emacs $@
+EOF
+  chmod +x ~/.local/bin/doom
+
+else
+  EMACS_INIT_DIRECTORY=$HOME
+fi
 
 if [ ! -d $EMACS_INIT_DIRECTORY ]; then
   mkdir -p $EMACS_INIT_DIRECTORY/.config
@@ -43,10 +56,3 @@ if [ ! -d $EMACS_INIT_DIRECTORY ]; then
   git clone --depth 1 https://github.com/doomemacs/doomemacs $EMACS_INIT_DIRECTORY/.config/emacs
   $EMACS_INIT_DIRECTORY/.config/emacs/bin/doom install --env -!
 fi
-
-cat <<'EOF' >~/.local/bin/doom
-#!/usr/bin/env bash
-
-emacs --init-directory=$HOME/.opt/doom/.config/emacs $@
-EOF
-chmod +x ~/.local/bin/doom
