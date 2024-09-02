@@ -44,11 +44,6 @@ if [ ! -d $EMACS_INIT_DIRECTORY ]; then
   $EMACS_INIT_DIRECTORY/.config/emacs/bin/doom install --env -!
 fi
 
-if [ ! -d $HOME/.config/emacs ] && [ ! -f $HOME/.emacs ] && [ ! -d $HOME/.emacs ] && [ ! -d $HOME/.emacs.d ]; then
-  mkdir -p $HOME/.config
-  ln -s $EMACS_INIT_DIRECTORY/.config/emacs $HOME/.config/emacs
-fi
-
 cat <<'EOF' >~/.local/bin/doom
 #!/usr/bin/env bash
 
