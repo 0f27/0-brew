@@ -42,6 +42,11 @@ if [ ! -d $EMACS_INIT_DIRECTORY ]; then
   git clone --depth 1 https://github.com/syl20bnr/spacemacs $EMACS_INIT_DIRECTORY/.emacs.d
 fi
 
+if [ ! -d $HOME/.config/emacs ] && [ ! -f $HOME/.emacs ] && [ ! -d $HOME/.emacs ] && [ ! -d $HOME/.emacs.d ]; then
+  mkdir -p $HOME/.config
+  ln -s $EMACS_INIT_DIRECTORY/.emacs.d $HOME/.emacs.d
+fi
+
 cat <<'EOF' >~/.local/bin/spacemacs
 #!/usr/bin/env bash
 
