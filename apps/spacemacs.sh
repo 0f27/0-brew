@@ -38,9 +38,8 @@ EMACS_VERSION="$(emacs --version | head -n 1 | cut -d' ' -f 3)"
 EMACS_INIT_DIRECTORY="$HOME/.opt/spacemacs"
 
 if [ ! -d $EMACS_INIT_DIRECTORY ]; then
-  mkdir -p $HOME/.config
-  mkdir -p $HOME/.opt/spacemacs
-  git clone --depth 1 https://github.com/syl20bnr/spacemacs EMACS_INIT_DIRECTORY/.emacs.d
+  mkdir -p $EMACS_INIT_DIRECTORY
+  git clone --depth 1 https://github.com/syl20bnr/spacemacs $EMACS_INIT_DIRECTORY/.emacs.d
 fi
 
 cat <<'EOF' >~/.local/bin/spacemacs
