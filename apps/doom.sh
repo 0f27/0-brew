@@ -42,10 +42,11 @@ if [ ! -d $EMACS_INIT_DIRECTORY ]; then
   # rm -rf $HOME/.emacs $HOME/.emacs.d $HOME/.config/emacs
   git clone --depth 1 https://github.com/doomemacs/doomemacs $EMACS_INIT_DIRECTORY/.config/emacs
   $EMACS_INIT_DIRECTORY/.config/emacs/bin/doom install --env -!
-  if [ ! -d $HOME/.config/emacs ] && [ ! -f $HOME/.emacs ] && [ ! -d $HOME/.emacs ] && [ ! -d $HOME/.emacs.d ]; then
-    mkdir -p $HOME/.config
-    ln -s $EMACS_INIT_DIRECTORY/.config/emacs $HOME/.config/emacs
-  fi
+fi
+
+if [ ! -d $HOME/.config/emacs ] && [ ! -f $HOME/.emacs ] && [ ! -d $HOME/.emacs ] && [ ! -d $HOME/.emacs.d ]; then
+  mkdir -p $HOME/.config
+  ln -s $EMACS_INIT_DIRECTORY/.config/emacs $HOME/.config/emacs
 fi
 
 cat <<'EOF' >~/.local/bin/doom
