@@ -47,6 +47,7 @@ if [ ! -d $HOME/.config/emacs ] && [ ! -f $HOME/.emacs ] && [ ! -d $HOME/.emacs 
   ln -s $EMACS_INIT_DIRECTORY/.emacs.d $HOME/.emacs.d
 fi
 
+mkdir -p ~/.local/bin
 cat <<'EOF' >~/.local/bin/spacemacs
 #!/usr/bin/env bash
 

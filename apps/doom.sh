@@ -39,6 +39,7 @@ EMACS_VERSION="$(emacs --version | head -n 1 | cut -d' ' -f 3)"
 if [ -d $HOME/.config/emacs ] && [ -f $HOME/.emacs ] && [ -d $HOME/.emacs ] && [ -d $HOME/.emacs.d ]; then
   EMACS_INIT_DIRECTORY="$HOME/.opt/doom"
 
+  mkdir -p ~/.local/bin
   cat <<'EOF' >~/.local/bin/doom
 #!/usr/bin/env bash
 
