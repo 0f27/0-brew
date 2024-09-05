@@ -31,10 +31,15 @@ else
   mkdir -p ~/.config/wezterm
   cat <<'EOF' >~/.config/wezterm/wezterm.lua
 local wezterm = require("wezterm")
+local mux = wezterm.mux
 local config = {}
 
--- config.default_prog = { "fish" }
+wezterm.on('gui-startup', function(cmd)
+  local tab, pane, window = mux.spawn_window(cmd or {})
+  window:gui_window():maximize()
+end)
 
+-- config.default_prog = { "fish" }
 
 -- basic decorations and theme
 config.color_scheme = "Vs Code Dark+ (Gogh)"
