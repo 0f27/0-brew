@@ -27,7 +27,7 @@ results = list_avaliable(link)
 print("Following installation scripts avaliable:")
 for i, script in enumerate(results):
     print(f"  {i+1}. {script}")
-print("\nRun command with script names to run scripts.\nExamples:")
+print("\nRun command with script name to run installation script.\nExamples:")
 print("  package-installer neovim")
 print("  package-installer sfmono")
 print("  package-installer lazygit")
