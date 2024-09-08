@@ -1,11 +1,11 @@
 #!/bin/bash
 
-if [ "$1" = "--help" ]; then
+if [ "$1" = "help" ] || [ "$1" = "--help" ] || [ -z $1 ]; then
   echo Usage:
   echo package-installer [package name or option]
   echo --help - show this message
   echo --list - show existing scripts
-elif [ "$1" = "--list" ]; then
+elif [ "$1" = "list" ] || [ "$1" = "--list" ]; then
   python3 <<'EOF'
 import re
 from sys import argv
