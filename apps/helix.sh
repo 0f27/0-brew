@@ -2,16 +2,20 @@
 
 # installing Helix itself, if not available
 if ! command -v hx &>/dev/null; then
-  if [[ $(uname -o) == "Darwin" ]]; then
-  	brew install helix
+  if command -v brew &>/dev/null; then
+    brew install helix
 
   elif [[ $(uname -o) == "Android" ]]; then
     apt update
     apt install -y helix
 
   else
-
-    . /etc/os-release
+    if [[ $(uname -o) == "Darwin" ]]; then
+      OS="macos"
+    else
+      OS="linux"
+      . /etc/os-release
+    fi
 
     if [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" && "$VARIANT_ID" != "kinoite" ]]; then
       dnf check-update
@@ -28,14 +32,15 @@ if ! command -v hx &>/dev/null; then
       sudo ln -s /usr/bin/helix /usr/bin/hx
 
     else
+
       VERSION="$(curl -sL https://github.com/helix-editor/helix/releases | grep 'helix/releases/expanded_assets' | head -n1 | cut -d '"' -f 6 | cut -d '/' -f8)"
       ARCH="$(uname -m)"
-    	ARCHIVE="helix-$VERSION-$ARCH-linux.tar.xz"
-    	EXTRACTION_FOLDER="$(echo $ARCHIVE | sed 's/.tar.xz$//')"
-    	URL="https://github.com/helix-editor/helix/releases/download/$VERSION/$ARCHIVE"
-    	wget $URL
+      ARCHIVE="helix-$VERSION-$ARCH-$OS.tar.xz"
+      EXTRACTION_FOLDER="$(echo $ARCHIVE | sed 's/.tar.xz$//')"
+      URL="https://github.com/helix-editor/helix/releases/download/$VERSION/$ARCHIVE"
+      wget $URL
 
-    	mkdir -p "$HOME/.local/bin" "$HOME/.opt" "$HOME/.config/helix"
+      mkdir -p "$HOME/.local/bin" "$HOME/.opt" "$HOME/.config/helix"
       tar xf $ARCHIVE -C "$HOME/.opt"
       ln -s "$HOME/.opt/$EXTRACTION_FOLDER/hx" "$HOME/.local/bin/hx"
       ln -s "$HOME/.opt/$EXTRACTION_FOLDER/runtime" "$HOME/.config/helix/runtime"
@@ -49,45 +54,44 @@ if ! command -v hx &>/dev/null; then
   fi
 fi
 
-
 # setting as default editor
 # EDITOR
 if ! grep -q 'set -Ux EDITOR' $HOME/.config/fish/config.fish; then
   mkdir -p $HOME/.config/fish
-  echo 'set -Ux EDITOR hx' >> $HOME/.config/fish/config.fish
+  echo 'set -Ux EDITOR hx' >>$HOME/.config/fish/config.fish
 fi
 
 if ! grep -q 'export EDITOR' $HOME/.zshrc; then
-  echo 'export EDITOR=hx' >> $HOME/.zshrc
+  echo 'export EDITOR=hx' >>$HOME/.zshrc
 fi
 
 if ! grep -q 'export EDITOR' $HOME/.bashrc; then
-  echo 'export EDITOR=hx' >> $HOME/.bashrc
+  echo 'export EDITOR=hx' >>$HOME/.bashrc
 fi
 
 # VISUAL
 if ! grep -q 'set -Ux VISUAL' $HOME/.config/fish/config.fish; then
   mkdir -p $HOME/.config/fish
-  echo 'set -Ux VISUAL hx' >> $HOME/.config/fish/config.fish
+  echo 'set -Ux VISUAL hx' >>$HOME/.config/fish/config.fish
 fi
 
 if ! grep -q 'export VISUAL' $HOME/.zshrc; then
-  echo 'export VISUAL=hx' >> $HOME/.zshrc
+  echo 'export VISUAL=hx' >>$HOME/.zshrc
 fi
 
 if ! grep -q 'export VISUAL' $HOME/.bashrc; then
-  echo 'export VISUAL=hx' >> $HOME/.bashrc
+  echo 'export VISUAL=hx' >>$HOME/.bashrc
 fi
 
 if ! grep -q '.local/bin' $HOME/.zshrc; then
-  echo 'export PATH="$HOME/.local/bin:$PATH"' >> $HOME/.zshrc
+  echo 'export PATH="$HOME/.local/bin:$PATH"' >>$HOME/.zshrc
 fi
 if ! grep -q '.local/bin' $HOME/.bashrc; then
-  echo 'export PATH="$HOME/.local/bin:$PATH"' >> $HOME/.bashrc
+  echo 'export PATH="$HOME/.local/bin:$PATH"' >>$HOME/.bashrc
 fi
 if ! grep -q '.local/bin' $HOME/.config/fish/config.fish; then
   mkdir -p $HOME/.config/fish
-  echo "set -a fish_user_paths $HOME/.local/bin" >> $HOME/.config/fish/config.fish
+  echo "set -a fish_user_paths $HOME/.local/bin" >>$HOME/.config/fish/config.fish
 fi
 
 # adding basic example config
@@ -116,4 +120,3 @@ backspace = [ "shrink_selection" ]
 w = [":write", ":redraw"]
 g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw", ":reload-all"]
 EOF
-
