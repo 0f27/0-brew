@@ -5,11 +5,11 @@ Set of universal installers for packages, not avsilable in repos
 Run installer script with:
 
 #+begin_src bash
-python3 -c "$(curl -sL https://raw.githubusercontent.com/XelorR/package-installer/main/package-installer)" --list
+bash -c "$(curl -sL https://raw.githubusercontent.com/XelorR/package-installer/main/package-installer)" --list
 #+end_src
 
 or:
 
 #+begin_src bash
-python3 -c "$(curl -sL https://bit.ly/package-installer)" --list
+bash -c "$(curl -sL https://bit.ly/package-installer)" --list
 #+end_src
