@@ -12,6 +12,5 @@ bash package-installer --list
 or:
 
 #+begin_src bash
-curl -sL https://bit.ly/package-installer > package-installer
-bash package-installer --list
+curl -sL https://bit.ly/package-installer | bash -s list
 #+end_src
