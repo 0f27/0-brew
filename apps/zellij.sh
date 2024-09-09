@@ -44,5 +44,6 @@ if ! grep -q '.local/bin' $HOME/.bashrc; then
   echo 'export PATH="$HOME/.local/bin:$PATH"' >> $HOME/.bashrc
 fi
 if ! grep -q '.local/bin' $HOME/.config/fish/config.fish; then
+  mkdir -p $HOME/.config/fish
   echo "set -a fish_user_paths $HOME/.local/bin" >> $HOME/.config/fish/config.fish
 fi

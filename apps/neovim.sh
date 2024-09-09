@@ -55,6 +55,7 @@ else
         echo 'export PATH=$HOME/.local/bin:$PATH' >>$HOME/.zshrc
       fi
       if ! grep -q '.local/bin' $HOME/.config/fish/config.fish; then
+        mkdir -p $HOME/.config/fish
         echo "set -a fish_user_paths $HOME/.local/bin" >>$HOME/.config/fish/config.fish
       fi
 
