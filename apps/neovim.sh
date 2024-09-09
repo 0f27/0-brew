@@ -54,6 +54,10 @@ else
       if ! grep -q '.local/bin' $HOME/.zshrc; then
         echo 'export PATH=$HOME/.local/bin:$PATH' >>$HOME/.zshrc
       fi
+      if ! grep -q '.local/bin' $HOME/.config/fish/config.fish; then
+        echo "set -a fish_user_paths $HOME/.local/bin" >>$HOME/.config/fish/config.fish
+      fi
+
     elif [[ "$(uname -m)" == "aarch64" ]]; then
       if command -v snap &>/dev/null; then
         sudo snap install nvim --classic
