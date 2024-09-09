@@ -23,7 +23,7 @@ if ! command -v hx &>/dev/null; then
 
     elif [[ "$ID" == "ubuntu" || "$ID_LIKE" == "ubuntu debian" ]]; then
 
-      sudo add-apt-repository ppa:maveonair/helix-editor
+      sudo add-apt-repository ppa:maveonair/helix-editor -y
       sudo apt update
       sudo apt install -y helix
 
