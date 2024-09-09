@@ -23,6 +23,11 @@ else
   elif [ "$ID_LIKE" = "arch" ]; then
     sudo pacman -Sy --noconfirm neovim
 
+  elif [[ "$ID" == "ubuntu" || "$ID_LIKE" == "ubuntu debian" ]]; then
+    sudo add-apt-repository ppa:neovim-ppa/unstable -y
+    sudo apt update
+    sudo apt install -y neovim
+
   else
     if [[ "$(uname -m)" == "x86_64" ]]; then
       URL="https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz"
