@@ -12,6 +12,7 @@ elif [[ $(uname -o) == "Android" ]]; then
   apt install -y neovim
 
 else
+  . /etc/os-release
 
   if [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" && "$VARIANT_ID" != "kinoite" ]]; then
     dnf check-update
