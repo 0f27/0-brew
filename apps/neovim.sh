@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 if [[ $(uname -o) == "Darwin" ]]; then
-  brew install neovim
+  if command -v brew &>/dev/null; then
+    brew install neovim
+  else
+    echo brew not found, binary download for mac not implemented...
+  fi
 
 elif [[ $(uname -o) == "Android" ]]; then
   apt update
