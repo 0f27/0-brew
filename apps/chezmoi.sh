@@ -2,7 +2,7 @@
 
 if command -v curl &>/dev/null; then
 
-  if [[ $(uname -o) == "Darwin" ]]; then
+  if command -v brew &>/dev/null; then
     brew install chezmoi
 
   elif [[ $(uname -o) == "Android" ]]; then
