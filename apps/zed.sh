@@ -8,6 +8,9 @@ else
 
   if [ "$ID_LIKE" = "arch" ]; then
     sudo pacman -Sy --noconfirm lf
+  elif command -v flatpak &>/dev/null; then
+    flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    flatpak install flathub dev.zed.Zed
   else
     curl -f https://zed.dev/install.sh | sh
   fi
