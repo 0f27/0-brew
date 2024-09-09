@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if command -v curl &>/dev/null; then
-  
+
   if [[ $(uname -o) == "Darwin" ]]; then
     brew install chezmoi
 
@@ -14,7 +14,7 @@ if command -v curl &>/dev/null; then
     . /etc/os-release
 
     if [ "$ID_LIKE" = "arch" ]; then
-      pacman -Sy chezmoi
+      sudo pacman -Sy --noconfirm chezmoi
 
     elif [ "$ID_LIKE" = "opensuse suse" ]; then
       sudo zypper refresh
