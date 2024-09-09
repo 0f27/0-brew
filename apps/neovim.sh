@@ -50,7 +50,11 @@ else
         echo 'export PATH=$HOME/.local/bin:$PATH' >>$HOME/.zshrc
       fi
     elif [[ "$(uname -m)" == "aarch64" ]]; then
-      echo there is no NeoVim for GNU Linux aarch64 in official repo
+      if command -v snap &>/dev/null; then
+        sudo snap install nvim --classic
+      else
+        echo there is no NeoVim for GNU Linux aarch64 in official repo
+      fi
 
     fi
   fi
