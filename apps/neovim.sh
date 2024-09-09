@@ -13,6 +13,9 @@ else
     dnf check-update
     sudo dnf install -y neovim
 
+  elif [[ "$VARIANT_ID" == "silverblue" || "$VARIANT_ID" == "kinoite" ]]; then
+    sudo rpm-ostree install --apply-live -y neovim
+
   elif [ "$ID_LIKE" = "opensuse suse" ]; then
     sudo zypper refresh
     sudo zypper --non-interactive --no-confirm install neovim
