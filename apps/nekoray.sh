@@ -6,7 +6,6 @@ elif [[ $(uname -o) == "Android" ]]; then
   echo there is no nekoray in termux
 
 else
-  PAGE=$(curl -sL https://github.com/MatsuriDayo/nekoray/releases)
   VERSION="$(curl -sL https://github.com/MatsuriDayo/nekoray/releases | grep '/MatsuriDayo/nekoray/releases/tag/' | cut -d'"' -f6 | head -n 1 | cut -d'/' -f6)"
   APPIMAGE_NAME="$(curl -sL https://github.com/MatsuriDayo/nekoray/releases/expanded_assets/$VERSION | grep AppImage | cut -d'"' -f2 | head -n1 | cut -d'/' -f7)"
   DOWNLOAD_URL="https://github.com/MatsuriDayo/nekoray/releases/download/$VERSION/$APPIMAGE_NAME"
