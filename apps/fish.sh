@@ -3,7 +3,7 @@
 if ! command -v fish &>/dev/null; then
   echo No fish found, installing...
 
-  if [[ $(uname -o) == "Darwin" ]]; then
+  if command -v brew &>/dev/null; then
     echo macOS detected
     brew install fish
 
@@ -17,7 +17,21 @@ if ! command -v fish &>/dev/null; then
 
     . /etc/os-release
 
-    if [[ "$ID" == "debian" || "$ID" == "kali" ]]; then
+    if command -v pacman &>/dev/null; then
+      sudo pacman -Sy --noconfirm fish
+
+    elif command -v rpm-ostree &>/dev/null; then
+      sudo rpm-ostree install --apply-live -y fish
+
+    elif command -v zypper &>/dev/null; then
+      sudo zypper refresh
+      sudo zypper --non-interactive --no-confirm install fish
+
+    elif command -v dnf &>/dev/null; then
+      dnf check-update
+      sudo dnf install -y fish
+
+    elif [[ "$ID" == "debian" || "$ID" == "kali" ]]; then
       if [ "$ID" == "kali" || "$VERSION_ID" = "12" ]; then
         echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_12/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
         curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_12/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg >/dev/null
@@ -39,19 +53,6 @@ if ! command -v fish &>/dev/null; then
         sudo apt update
         sudo apt install -y fish
       fi
-    elif [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" && "$VARIANT_ID" != "kinoite" ]]; then
-      dnf check-update
-      sudo dnf install -y fish
-
-    elif [[ "$VARIANT_ID" == "silverblue" || "$VARIANT_ID" == "kinoite" ]]; then
-      sudo rpm-ostree install --apply-live -y fish
-
-    elif [ "$ID_LIKE" = "opensuse suse" ]; then
-      sudo zypper refresh
-      sudo zypper --non-interactive --no-confirm install fish
-
-    elif [ "$ID_LIKE" = "arch" ]; then
-      sudo pacman -Sy --noconfirm fish
 
     fi
   fi
@@ -71,16 +72,16 @@ is_path_set() {
 }
 
 if ! is_path_set; then
-    echo "set -a fish_user_paths $PATH_TO_ADD" >> "$FISH_CONFIG_FILE"
+  echo "set -a fish_user_paths $PATH_TO_ADD" >>"$FISH_CONFIG_FILE"
 fi
 
 if [[ $(uname -o) == "Darwin" ]]; then
   THE_SHELL='/opt/homebrew/bin/fish'
   if ! grep -q /opt/homebrew/bin $FISH_CONFIG_FILE; then
-      echo "set -a fish_user_paths /opt/homebrew/bin" >> "$FISH_CONFIG_FILE"
+    echo "set -a fish_user_paths /opt/homebrew/bin" >>"$FISH_CONFIG_FILE"
   fi
   if ! grep -q /usr/local/bin $FISH_CONFIG_FILE; then
-      echo "set -a fish_user_paths /usr/local/bin" >> "$FISH_CONFIG_FILE"
+    echo "set -a fish_user_paths /usr/local/bin" >>"$FISH_CONFIG_FILE"
   fi
 else
   THE_SHELL='/bin/fish'

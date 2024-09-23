@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ $(uname -o) == "Darwin" ]]; then
+if command -v brew &>/dev/null; then
   brew install --cask wezterm
 
 elif [[ $(uname -o) == "Android" ]]; then
@@ -12,18 +12,25 @@ else
 
   # wezterm itself
 
-  if [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" && "$VARIANT_ID" != "kinoite" ]]; then
+  if command -v pacman &>/dev/null; then
+    sudo pacman -Sy --noconfirm wezterm
+
+  elif command -v zypper &>/dev/null; then
+    zypper --non-interactive --no-confirm install wezterm
+
+  elif command -v dnf &>/dev/null; then
     sudo dnf copr enable wezfurlong/wezterm-nightly
     sudo dnf install -y wezterm
-  elif [ "$ID_LIKE" = "opensuse suse" ]; then
-    zypper --non-interactive --no-confirm install wezterm
-  elif [[ "$ID" == "debian" || "$ID_LIKE" == "debian" || "$ID_LIKE" == "ubuntu debian" ]]; then
+
+  elif command -v apt &>/dev/null; then
     curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
     echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
     sudo apt update
     sudo apt install -y wezterm
-  elif [ "$ID_LIKE" = "arch" ]; then
-    sudo pacman -Sy --noconfirm wezterm
+
+  else
+    echo currently not implemented for $ID
+
   fi
 
   # config

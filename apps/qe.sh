@@ -10,28 +10,40 @@ else
   . /etc/os-release
 
   # installing pre-requisites
-  if [[ "$ID" == "ubuntu" || "$ID_LIKE" == "ubuntu debian" ]]; then
+
+  if command -v pacman &>/dev/null; then
+    sudo pacman -Sy --noconfirm \
+      wget \
+      qemu-desktop \
+      cdrkit
+
+  elif command -v rpm-ostree &>/dev/null; then
+    sudo rpm-ostree install --apply-live -y \
+      wget \
+      edk2-ovmf \
+      qemu-{kvm,tools} \
+      genisoimage
+
+  elif command -v dnf &>/dev/null; then
+    sudo dnf install -y \
+      wget \
+      edk2-ovmf \
+      qemu-{kvm,tools} \
+      genisoimage
+
+  elif [[ "$ID" == "ubuntu" || "$ID_LIKE" == "ubuntu debian" ]]; then
     sudo apt install -y \
       wget \
       qemu-kvm \
       genisoimage
+
   elif [[ "$ID" == "debian" || "$ID" == "kali" ]]; then
     sudo apt update
     sudo apt install -y \
       wget \
       qemu-{user,system{,-gui},utils} \
       genisoimage
-  elif [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" && "$VARIANT_ID" != "kinoite" ]]; then
-    sudo dnf install -y \
-      wget \
-      edk2-ovmf \
-      qemu-{kvm,tools} \
-      genisoimage
-  elif [ "$ID_LIKE" = "arch" ]; then
-    sudo pacman -Sy --noconfirm \
-      wget \
-      qemu-desktop \
-      cdrkit
+
   fi
 
   # copying script itself

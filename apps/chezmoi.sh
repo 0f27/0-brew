@@ -13,10 +13,10 @@ if ! command -v chezmoi &>/dev/null; then
 
     . /etc/os-release
 
-    if [ "$ID_LIKE" = "arch" ]; then
+    if command -v pacman &>/dev/null; then
       sudo pacman -Sy --noconfirm chezmoi
 
-    elif [ "$ID_LIKE" = "opensuse suse" ]; then
+    elif command -v zypper &>/dev/null; then
       sudo zypper refresh
       sudo zypper --non-interactive --no-confirm install chezmoi
 

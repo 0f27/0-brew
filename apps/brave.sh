@@ -1,39 +1,39 @@
 #!/usr/bin/env bash
 
-if [[ $(uname -o) == "Darwin" ]]; then
-    brew install --cask brave-browser
+if command -v brew &>/dev/null; then
+  brew install --cask brave-browser
 
 elif [[ $(uname -o) == "Android" ]]; then
-	echo termux version currently not implemented
+  echo termux version currently not implemented
 
 else
 
-    . /etc/os-release
+  . /etc/os-release
 
-    if [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" && "$VARIANT_ID" != "kinoite" ]]; then
-        sudo dnf install dnf-plugins-core
-        sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-        sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+  if command -v pacman &>/dev/null; then
+    paru -Sy brave-bin
 
-        sudo dnf install -y brave-browser
+  elif command -v zypper &>/dev/null; then
+    sudo zypper --non-interactive --no-confirm install curl
+    sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+    sudo zypper addrepo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 
-    elif [ "$ID_LIKE" = "opensuse suse" ]; then
-        sudo zypper --non-interactive --no-confirm install curl
-        sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-        sudo zypper addrepo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+    sudo zypper --non-interactive --no-confirm install brave-browser
 
-        sudo zypper --non-interactive --no-confirm install brave-browser
+  elif command -v dnf &>/dev/null; then
+    sudo dnf install dnf-plugins-core
+    sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+    sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 
-    elif [[ "$ID" == "debian" || "$ID_LIKE" == "debian" || "$ID_LIKE" == "ubuntu debian" ]]; then
-        sudo apt install -y curl
-        sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-        echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+    sudo dnf install -y brave-browser
 
-        sudo apt update
-        sudo apt install -y brave-browser
+  elif command -v apt &>/dev/null; then
+    sudo apt install -y curl
+    sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 
-    elif [ "$ID_LIKE" = "arch" ]; then
-        paru -Sy brave-bin
+    sudo apt update
+    sudo apt install -y brave-browser
 
-    fi
+  fi
 fi

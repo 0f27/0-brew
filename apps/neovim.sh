@@ -14,19 +14,19 @@ elif [[ $(uname -o) == "Android" ]]; then
 else
   . /etc/os-release
 
-  if [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" && "$VARIANT_ID" != "kinoite" ]]; then
-    dnf check-update
-    sudo dnf install -y neovim
+  if command -v pacman &>/dev/null; then
+    sudo pacman -Sy --noconfirm neovim
 
-  elif [[ "$VARIANT_ID" == "silverblue" || "$VARIANT_ID" == "kinoite" ]]; then
+  elif command -v rpm-ostree &>/dev/null; then
     sudo rpm-ostree install --apply-live -y neovim
 
-  elif [ "$ID_LIKE" = "opensuse suse" ]; then
+  elif command -v zypper &>/dev/null; then
     sudo zypper refresh
     sudo zypper --non-interactive --no-confirm install neovim
 
-  elif [ "$ID_LIKE" = "arch" ]; then
-    sudo pacman -Sy --noconfirm neovim
+  elif command -v dnf &>/dev/null; then
+    dnf check-update
+    sudo dnf install -y neovim
 
   elif [[ "$ID" == "ubuntu" || "$ID_LIKE" == "ubuntu debian" ]]; then
     sudo add-apt-repository ppa:neovim-ppa/unstable -y

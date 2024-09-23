@@ -9,9 +9,10 @@ elif [[ $(uname -o) == "Android" ]]; then
 else
   . /etc/os-release
 
-  if [ "$ID_LIKE" = "arch" ]; then
+  if command -v pacman &>/dev/null; then
     sudo pacman -Sy --noconfirm ollama
     sudo systemctl enable --now ollama
+
   elif [[ "$(uname -m)" == "x86_64" ]]; then
     # Define Ollama installation path
     mkdir -p $HOME/.local/bin

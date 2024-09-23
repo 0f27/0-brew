@@ -12,23 +12,23 @@ if ! command -v emacs &>/dev/null; then
 
     . /etc/os-release
 
-    if [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" && "$VARIANT_ID" != "kinoite" ]]; then
-      dnf check-update
-      sudo dnf install -y emacs
+    if command -v pacman &>/dev/null; then
+      sudo pacman -Sy --noconfirm emacs
 
-    elif [[ "$VARIANT_ID" == "silverblue" || "$VARIANT_ID" == "kinoite" ]]; then
+    elif command -v rpm-ostree &>/dev/null; then
       sudo rpm-ostree install --apply-live -y emacs
 
-    elif [ "$ID_LIKE" = "opensuse suse" ]; then
+    elif command -v zypper &>/dev/null; then
       sudo zypper refresh
       sudo zypper --non-interactive --no-confirm install emacs
 
-    elif [[ "$ID" == "debian" || "$ID_LIKE" == "debian" || "$ID_LIKE" == "ubuntu debian" ]]; then
+    elif command -v dnf &>/dev/null; then
+      dnf check-update
+      sudo dnf install -y emacs
+
+    elif command -v apt &>/dev/null; then
       sudo apt update
       sudo apt install -y emacs
-
-    elif [ "$ID_LIKE" = "arch" ]; then
-      sudo pacman -Sy --noconfirm emacs
 
     fi
   fi

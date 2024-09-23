@@ -17,7 +17,11 @@ if ! command -v hx &>/dev/null; then
       . /etc/os-release
     fi
 
-    if [[ "$ID" == "fedora" && "$VARIANT_ID" != "silverblue" && "$VARIANT_ID" != "kinoite" ]]; then
+    if command -v pacman &>/dev/null; then
+      sudo pacman -Sy --noconfirm helix
+      sudo ln -s /usr/bin/helix /usr/bin/hx
+
+    elif command -v dnf &>/dev/null; then
       dnf check-update
       sudo dnf install -y helix
 
@@ -26,10 +30,6 @@ if ! command -v hx &>/dev/null; then
       sudo add-apt-repository ppa:maveonair/helix-editor -y
       sudo apt update
       sudo apt install -y helix
-
-    elif [ "$ID_LIKE" = "arch" ]; then
-      sudo pacman -Sy --noconfirm helix
-      sudo ln -s /usr/bin/helix /usr/bin/hx
 
     else
 
