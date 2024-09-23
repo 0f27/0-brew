@@ -26,6 +26,7 @@ if ! command -v lf &>/dev/null; then
       wget $URL
       tar xf $archiveName -C "$HOME/.local/bin/"
       rm -rf $archiveName
+      sudo ln -s "$HOME/.local/bin/" /usr/bin/lf
 
     fi
   fi
