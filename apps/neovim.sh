@@ -28,7 +28,7 @@ else
     dnf check-update
     sudo dnf install -y neovim
 
-  elif [[ "$ID" == "ubuntu" || "$ID_LIKE" == "ubuntu debian" ]]; then
+  elif command -v add-apt-repository &>/dev/null; then
     sudo add-apt-repository ppa:neovim-ppa/unstable -y
     sudo apt update
     sudo apt install -y neovim
