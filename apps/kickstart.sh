@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if ! command -v nvim &>/dev/null; then
-  curl -sL https://raw.githubusercontent.com/XelorR/package-installer/main/package-installer | bash -s neovim
+  curl -sL https://raw.githubusercontent.com/0f27/0-brew/main/package-installer | bash -s neovim
 fi
 
 rm -rf ~/.config/kickstart ~/.local/share/kickstart

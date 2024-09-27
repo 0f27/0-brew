@@ -5,12 +5,12 @@ Set of universal installers for packages, not avsilable in repos
 Run installer script with:
 
 #+begin_src bash
-curl -sL https://raw.githubusercontent.com/XelorR/package-installer/main/package-installer > package-installer
+curl -sL https://raw.githubusercontent.com/0f27/0-brew/main/package-installer > package-installer
 bash package-installer --list
 #+end_src
 
 or:
 
 #+begin_src bash
-curl -sL https://bit.ly/package-installer | bash -s list
+curl -sL https://bit.ly/0-brew | bash -s list
 #+end_src
