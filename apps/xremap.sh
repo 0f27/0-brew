@@ -37,10 +37,14 @@ shared:
 modmap:
   - name: Modifiers
     remap:
-      CapsLock: Esc
       Alt_L: Super_L
       Super_L: Alt_L
       Ctrl_L: Super-space
+        held: Ctrl_L
+        alone: Super-space
+      CapsLock:
+        held: Ctrl_R
+        alone: Esc
       Space:
         held: Ctrl_R
         alone: Space
