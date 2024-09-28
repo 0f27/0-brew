@@ -34,10 +34,22 @@ if ! command -v emacs &>/dev/null; then
   fi
 fi
 
-EMACS_INIT_DIRECTORY="$HOME"
-if [ ! -d $EMACS_INIT_DIRECTORY/.config/emacs ]; then
-  mkdir -p $EMACS_INIT_DIRECTORY/.config
-  # rm -rf $HOME/.emacs $HOME/.emacs.d $HOME/.config/emacs
-  git clone --depth 1 https://github.com/doomemacs/doomemacs $EMACS_INIT_DIRECTORY/.config/emacs
-  $EMACS_INIT_DIRECTORY/.config/emacs/bin/doom install --env -!
+if [ ! -d ~/.config/emacs ] && [ ! -d ~/.emacs.d ] && [ ! -f ~/.emacs ]; then
+  PATH="$HOME/.emacs.d/bin:$PATH"
+
+  git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+
+  mkdir ~/.doom.d
+  cp ~/.emacs.d/init.example.el ~/.doom.d/init.el
+  cp ~/.emacs.d/core/templates/config.example.el ~/.doom.d/config.el
+  cp ~/.emacs.d/core/templates/packages.example.el ~/.doom.d/packages.el
+
+  doom sync
+  doom env
+
+  emacs --batch -f nerd-icons-install-fonts
+
+else
+  echo Existing Emacs config found, skipping Doom installation
+
 fi
