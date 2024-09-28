@@ -39,8 +39,6 @@ if ! command -v emacs &>/dev/null; then
 fi
 
 if [ ! -d ~/.config/emacs ] && [ ! -d ~/.emacs.d ] && [ ! -f ~/.emacs ]; then
-  PATH="$HOME/.emacs.d/bin:$PATH"
-
   git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
   ~/.emacs.d/bin/doom install --force --fonts --env
 
