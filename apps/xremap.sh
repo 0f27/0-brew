@@ -29,19 +29,26 @@ else
   if [ ! -e $HOME/.config/xremap/config.yml ]; then
     mkdir -p $HOME/.config/xremap
     cat <<CONFIG >$HOME/.config/xremap/config.yml
+shared:
+  notepads: &notepads
+    - kate
+    - TextEditor
+
 modmap:
   - name: Modifiers
     remap:
       CapsLock: Esc
-      LeftAlt: LeftSuper
-      LeftSuper: LeftAlt
-      LeftCtrl: Super-space
+      Alt_L: Super_L
+      Super_L: Alt_L
+      Ctrl_L: Super-space
       Space:
-        held: RightCtrl
+        held: Ctrl_R
         alone: Space
+
+keymap:
   - name: Notepads
     application:
-      only: [TextEditor, kate]
+      only: *notepads
     remap:
       Super-Backspace: [Shift-home, Backspace]
       Super-Delete: [Shift-end, Delete]
