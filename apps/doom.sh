@@ -38,11 +38,23 @@ if ! command -v emacs &>/dev/null; then
   fi
 fi
 
-if [ ! -d ~/.config/emacs ] && [ ! -d ~/.emacs.d ] && [ ! -f ~/.emacs ]; then
-  git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
-  ~/.emacs.d/bin/doom install --force --fonts --env
+if [ ! -d ~/.opt/doom/.emacs.d ]; then
+  git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.opt/doom/.emacs.d
+  ~/.opt/doom/.emacs.d/bin/doom install --force --fonts --env --emacsdir ~/.opt/doom/.emacs.d
 
 else
-  echo Existing Emacs config found, skipping Doom installation
+  echo Existing Doom Emacs config found, skipping Doom installation
 
+fi
+
+mkdir -p ~/.local/bin
+cat <<'EOF' >~/.local/bin/doom
+#!/usr/bin/env bash
+
+emacs --init-directory=$HOME/.opt/doom/.emacs.d $@
+EOF
+chmod +x ~/.local/bin/doom
+
+if [ ! -d ~/.config/emacs ] && [ ! -f ~/.emacs ] && [ ! -d ~/.emacs.d ]; then
+  ln -s ~/.opt/doom/.emacs.d ~/.emacs.d
 fi
