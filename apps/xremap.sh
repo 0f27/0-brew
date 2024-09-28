@@ -39,7 +39,7 @@ modmap:
     remap:
       Alt_L: Super_L
       Super_L: Alt_L
-      Ctrl_L: Super-space
+      Ctrl_L:
         held: Ctrl_L
         alone: Super-space
       CapsLock:
