@@ -41,22 +41,8 @@ fi
 if [ ! -d ~/.config/emacs ] && [ ! -d ~/.emacs.d ] && [ ! -f ~/.emacs ]; then
   PATH="$HOME/.emacs.d/bin:$PATH"
 
-  # wget https://github.com/doomemacs/doomemacs/archive/refs/heads/master.tar.gz
-  # tar -xf master.tar.gz
-  # mv doomemacs-master ~/.emacs.d
-  # rm master.tar.gz
-
   git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
-
-  mkdir ~/.doom.d
-  cp ~/.emacs.d/init.example.el ~/.doom.d/init.el
-  cp ~/.emacs.d/core/templates/config.example.el ~/.doom.d/config.el
-  cp ~/.emacs.d/core/templates/packages.example.el ~/.doom.d/packages.el
-
-  doom sync
-  doom env
-
-  emacs --batch -f nerd-icons-install-fonts
+  ~/.emacs.d/bin/doom install --force --fonts --env
 
 else
   echo Existing Emacs config found, skipping Doom installation
