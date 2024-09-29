@@ -6,7 +6,8 @@ Run [[./package-installer][installer script]] with:
 
 #+begin_src bash
 curl -sL https://raw.githubusercontent.com/0f27/0-brew/main/package-installer > package-installer
-bash package-installer --list
+chmod +x package-installer
+./package-installer --list
 #+end_src
 
 or:
