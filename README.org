@@ -12,12 +12,12 @@ chmod +x package-installer
 
 or:
 
-#+begin_src bash :results output html
+#+begin_src bash :results output latex
 curl -sL https://bit.ly/0-brew | bash -s list
 #+end_src
 
 #+RESULTS:
-#+begin_export html
+#+begin_export latex
 Following installation scripts avaliable:
   1. anaconda
   2. brave
