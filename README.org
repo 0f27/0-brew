@@ -12,12 +12,11 @@ chmod +x package-installer
 
 or:
 
-#+begin_src bash :results output drawer
+#+begin_src bash :results output raw
 curl -sL https://bit.ly/0-brew | bash -s list
 #+end_src
 
 #+RESULTS:
-:results:
 Following installation scripts avaliable:
   1. anaconda
   2. brave
@@ -54,4 +53,3 @@ Examples:
   package-installer neovim
   package-installer sfmono
   package-installer lazygit
-:end:
