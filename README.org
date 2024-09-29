@@ -2,7 +2,7 @@
 
 Set of universal installers for packages, not avsilable in repos
 
-Run installer script with:
+Run [installer script](package-installer) with:
 
 #+begin_src bash
 curl -sL https://raw.githubusercontent.com/0f27/0-brew/main/package-installer > package-installer
