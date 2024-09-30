@@ -26,7 +26,6 @@ if ! command -v hx &>/dev/null; then
       sudo dnf install -y helix
 
     elif [[ "$ID" == "ubuntu" || "$ID_LIKE" == "ubuntu debian" ]]; then
-
       sudo add-apt-repository ppa:maveonair/helix-editor -y
       sudo apt update
       sudo apt install -y helix
