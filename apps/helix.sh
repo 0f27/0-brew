@@ -108,6 +108,10 @@ cursorline = true
 true-color = true
 
 [keys.normal]
+C-h = [ "jump_view_left" ]
+C-j = [ "jump_view_down" ]
+C-k = [ "jump_view_up" ]
+C-l = [ "jump_view_right" ]
 H = [ ":buffer-previous" ]
 L = [ ":buffer-next" ]
 A-z = [ ":toggle-option soft-wrap.enable", ":redraw" ]
