@@ -97,7 +97,7 @@ fi
 mkdir -p ~/.config/helix
 
 cat <<'EOF' >~/.config/helix/config.toml
-theme="dark_plus"
+theme="onedark"
 
 [editor.cursor-shape]
 insert = "bar"
