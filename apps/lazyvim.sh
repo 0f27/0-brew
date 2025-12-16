@@ -54,16 +54,16 @@ map("n", "<leader>cd", "<cmd>cd %:p:h<cr>", { noremap = true, desc = "cd to this
 map("n", "<leader>bb", "<cmd>Telescope buffers<CR>", { desc = "Find buffers" })
 EOF
 
-mkdir -p ~/.config/lazyvim/lua/plugins
-cat <<'EOF' >~/.config/lazyvim/lua/plugins/core.lua
-return {
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "tokyonight-night",
-      -- colorscheme = "tokyonight",
-      -- colorscheme = "catppuccin",
-    },
-  },
-}
-EOF
+# mkdir -p ~/.config/lazyvim/lua/plugins
+# cat <<'EOF' >~/.config/lazyvim/lua/plugins/core.lua
+# return {
+#   {
+#     "LazyVim/LazyVim",
+#     opts = {
+#       colorscheme = "tokyonight-night",
+#       -- colorscheme = "tokyonight",
+#       -- colorscheme = "catppuccin",
+#     },
+#   },
+# }
+# EOF
