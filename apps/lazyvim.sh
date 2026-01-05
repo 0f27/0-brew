@@ -54,16 +54,35 @@ map("n", "<leader>cd", "<cmd>cd %:p:h<cr>", { noremap = true, desc = "cd to this
 map("n", "<leader>bb", "<cmd>Telescope buffers<CR>", { desc = "Find buffers" })
 EOF
 
-# mkdir -p ~/.config/lazyvim/lua/plugins
-# cat <<'EOF' >~/.config/lazyvim/lua/plugins/core.lua
-# return {
-#   {
-#     "LazyVim/LazyVim",
-#     opts = {
-#       colorscheme = "tokyonight-night",
-#       -- colorscheme = "tokyonight",
-#       -- colorscheme = "catppuccin",
-#     },
-#   },
-# }
-# EOF
+mkdir -p ~/.config/lazyvim/lua/plugins
+cat <<'EOF' >~/.config/lazyvim/lua/plugins/theme.lua
+return {
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "tokyonight-night",
+      -- colorscheme = "tokyonight",
+      -- colorscheme = "catppuccin",
+    },
+  },
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   opts = {
+  --     transparent = true,
+  --     styles = {
+  --       sidebars = "transparent",
+  --       floats = "transparent",
+  --     },
+  --   },
+  -- },
+}
+EOF
+
+cat <<'EOF' >~/.config/lazyvim/lua/config/options.lua
+-- Options are automatically loaded before lazy.nvim startup
+-- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+-- Add any additional options here
+
+vim.opt.relativenumber = false
+
+EOF
