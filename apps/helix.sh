@@ -123,3 +123,9 @@ backspace = [ "shrink_selection" ]
 w = [":write", ":redraw"]
 g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw", ":reload-all"]
 EOF
+
+cat <<'EOF' >~/.config/helix/languages.toml
+[[language]]
+name = "c"
+file-types = ["c", "h", "keymap"]
+EOF
