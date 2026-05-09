@@ -7,12 +7,15 @@ elif [[ $(uname -o) == "Android" ]]; then
 	echo termux version currently not implemented
 
 else
+  PACKAGE=$(curl -sL https://repo.anaconda.com/archive/ | grep Anaconda3 | grep Linux | grep "$(uname -m)" | head -n 1 | cut -d\" -f2)
 	if ! test -f "$HOME/.anaconda3/bin/activate"; then
-		VERSION="$(curl -sL https://formulae.brew.sh/cask/anaconda | grep 'Current version' | cut -d'>' -f3 | cut -d'<' -f1)"
 		if command -v aria2c &>/dev/null; then
-			aria2c https://repo.anaconda.com/archive/Anaconda3-$VERSION-Linux-x86_64.sh && bash Anaconda3* -b -p ~/.anaconda3 && rm Anaconda3*
+			TOOL=aria2c
 		elif command -v wget &>/dev/null; then
-			wget https://repo.anaconda.com/archive/Anaconda3-$VERSION-Linux-x86_64.sh && bash Anaconda3* -b -p ~/.anaconda3 && rm Anaconda3*
-		fi
+			TOOL=wget
+    elif command -v curl &>/dev/null; then
+      TOOL="curl -LO"
+    fi
+    $TOOL https://repo.anaconda.com/archive/$PACKAGE && bash $PACKAGE -b -p ~/.anaconda3 && rm $PACKAGE
 	fi
 fi
