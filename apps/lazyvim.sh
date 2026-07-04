@@ -150,6 +150,7 @@ return {
     { "<leader>mq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian: Quick switch" },
     { "<leader>ml", "<cmd>ObsidianBacklinks<cr>", desc = "Obsidian: Backlinks" },
     { "<leader>mr", "<cmd>ObsidianRename<cr>", desc = "Obsidian: Rename (updates links)" },
+    { "<leader>mo", "<cmd>ObsidianOpen<cr>", desc = "Obsidian: Open in Obsidian" },
   },
   opts = {
     workspaces = {
