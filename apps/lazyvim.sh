@@ -130,3 +130,44 @@ return {
   },
 }
 EOF
+
+mkdir -p ~/.config/lazyvim/lua/plugins
+cat <<'EOF' >~/.config/lazyvim/lua/plugins/obsidian.lua
+  "epwalsh/obsidian.nvim",
+  version = "*",
+  lazy = true,
+  ft = "markdown",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
+  keys = {
+    { "<leader>mt", "<cmd>ObsidianToday<cr>", desc = "Obsidian: Today" },
+    { "<leader>mb", "<cmd>ObsidianYesterday<cr>", desc = "Obsidian: Yesterday (back)" },
+    { "<leader>mn", "<cmd>ObsidianTomorrow<cr>", desc = "Obsidian: Tomorrow (forward)" },
+    { "<leader>mN", "<cmd>ObsidianNew<cr>", desc = "Obsidian: New note" },
+    { "<leader>ms", "<cmd>ObsidianSearch<cr>", desc = "Obsidian: Search" },
+    { "<leader>mq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian: Quick switch" },
+    { "<leader>ml", "<cmd>ObsidianBacklinks<cr>", desc = "Obsidian: Backlinks" },
+    { "<leader>mr", "<cmd>ObsidianRename<cr>", desc = "Obsidian: Rename (updates links)" },
+  },
+  opts = {
+    workspaces = {
+      {
+        name = "vault",
+        path = "~/Org/vault_markdown", -- change to your vault location
+      },
+    },
+
+    ui = {
+      enable = true,
+      checkboxes = {},
+      bullets = {},
+    },
+
+    picker = {
+      name = "snacks.pick",
+    },
+
+    preferred_link_style = "wiki",
+  },
+EOF
