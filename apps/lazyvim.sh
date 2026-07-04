@@ -133,6 +133,7 @@ EOF
 
 mkdir -p ~/.config/lazyvim/lua/plugins
 cat <<'EOF' >~/.config/lazyvim/lua/plugins/obsidian.lua
+return {
   "epwalsh/obsidian.nvim",
   version = "*",
   lazy = true,
@@ -170,4 +171,5 @@ cat <<'EOF' >~/.config/lazyvim/lua/plugins/obsidian.lua
 
     preferred_link_style = "wiki",
   },
+}
 EOF
