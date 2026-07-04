@@ -84,7 +84,7 @@ cat <<'EOF' >~/.config/lazyvim/lua/config/options.lua
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
-vim.opt.relativenumber = false
+vim.opt.relativenumber = true
 
 -- Spellcheck off everywhere by default.
 -- LazyVim's own autocmds force spell=true on filetypes like markdown/gitcommit/text,
