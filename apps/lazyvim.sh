@@ -86,4 +86,47 @@ cat <<'EOF' >~/.config/lazyvim/lua/config/options.lua
 
 vim.opt.relativenumber = false
 
+-- Spellcheck off everywhere by default.
+-- LazyVim's own autocmds force spell=true on filetypes like markdown/gitcommit/text,
+-- so this alone isn't enough — see config/autocmds.lua for the enforcement.
+vim.opt.spell = false
+EOF
+
+cat <<'EOF' >~/.config/lazyvim/lua/config/autocmds.lua
+-- Autocmds are automatically loaded on the VeryLazy event
+-- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
+-- Add any additional autocmds here
+
+-- Force spellcheck off for every filetype, overriding LazyVim's defaults
+-- that turn it on for markdown/gitcommit/text. Toggle manually with <leader>us
+-- if you ever want it back for a single buffer.
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "*",
+  group = vim.api.nvim_create_augroup("disable_spell_everywhere", { clear = true }),
+  callback = function()
+    vim.opt_local.spell = false
+  end,
+})
+EOF
+
+mkdir -p ~/.config/lazyvim/lua/plugins
+cat <<'EOF' >~/.config/lazyvim/lua/plugins/lint.lua
+return {
+  "mfussenegger/nvim-lint",
+  opts = {
+    linters_by_ft = {
+      markdown = {}, -- disable linting for markdown only
+    },
+  },
+}
+EOF
+
+cat <<'EOF' >~/.config/lazyvim/lua/plugins/markdown.lua
+return {
+  "MeanderingProgrammer/render-markdown.nvim",
+  opts = {
+    bullet = { enabled = false },
+    checkbox = { enabled = false },
+  },
+}
 EOF
