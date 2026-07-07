@@ -433,6 +433,21 @@ local function write_file(path, lines)
   f:close()
 end
 
+-- Append mode: used when bang-mode targets a note that already exists.
+local function append_file(path, lines)
+  local f, err = io.open(path, "a")
+  if not f then
+    error("Cannot open file for appending: " .. tostring(err))
+  end
+  f:write(table.concat(lines, "\n"))
+  f:write("\n")
+  f:close()
+end
+
+local function file_exists(path)
+  return vim.fn.filereadable(path) == 1
+end
+
 local function source_file_name(bufnr)
   local path = vim.api.nvim_buf_get_name(bufnr)
   if path == "" then
@@ -453,8 +468,27 @@ local function backlink_line(bufnr)
   return string.format("- [%s](./%s)", title, name)
 end
 
+-- Decide the target filename/path for this extraction.
+-- Normal mode: always a fresh timestamped file.
+-- Bang mode: no timestamp; if a note with that slug already exists, the
+-- caller is expected to append to it instead of overwriting it.
+local function resolve_target(bufnr, title, bang)
+  local dir = target_dir(bufnr)
+  if bang then
+    local filename = util.sanitize_filename(title) .. ".md"
+    local filepath = dir .. "/" .. filename
+    return filename, filepath, file_exists(filepath)
+  end
+  local filename = util.timestamp() .. "_" .. util.sanitize_filename(title) .. ".md"
+  local filepath = dir .. "/" .. filename
+  return filename, filepath, false
+end
+
 --- Extract the header under the cursor (or the header it belongs to).
-function M.extract_header(bufnr)
+-- bang == true: no timestamp prefix; if a note with the same name already
+-- exists, append this extraction to the bottom of it instead of creating a
+-- new file, stamping the added heading with today's date.
+function M.extract_header(bufnr, bang)
   bufnr = bufnr or 0
   local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
   local cursor_line = vim.api.nvim_win_get_cursor(0)[1]
@@ -478,12 +512,18 @@ function M.extract_header(bufnr)
   body_raw = util.trim_blank_edges(body_raw)
   local body = mdparse.normalize_header_levels(body_raw, 1 - level)
 
-  local filename = util.timestamp() .. "_" .. util.sanitize_filename(title) .. ".md"
-  local filepath = target_dir(bufnr) .. "/" .. filename
+  local filename, filepath, merge = resolve_target(bufnr, title, bang)
 
-  local new_lines = { backlink_line(bufnr), "", "# " .. header_text, "" }
-  vim.list_extend(new_lines, body)
-  write_file(filepath, new_lines)
+  if merge then
+    local heading = "# " .. header_text .. " (extracted " .. os.date("%Y-%m-%d %H:%M") .. ")"
+    local block = { "", backlink_line(bufnr), "", heading, "" }
+    vim.list_extend(block, body)
+    append_file(filepath, block)
+  else
+    local new_lines = { backlink_line(bufnr), "", "# " .. header_text, "" }
+    vim.list_extend(new_lines, body)
+    write_file(filepath, new_lines)
+  end
 
   local replacement = header_raw:gsub("^(#+%s+).*$", "%1[" .. title .. "](./" .. filename .. ")")
 
@@ -506,11 +546,12 @@ function M.extract_header(bufnr)
   end
 
   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, new_buf_lines)
-  vim.notify("MdExtract: created " .. filename)
+  vim.notify("MdExtract: " .. (merge and "appended to " or "created ") .. filename)
 end
 
 --- Extract the current visual selection.
-function M.extract_selection(bufnr)
+-- bang == true: same no-timestamp / merge-if-exists behavior as extract_header.
+function M.extract_selection(bufnr, bang)
   bufnr = bufnr or 0
   local srow, scol, erow, ecol, mode = mdparse.get_visual_selection()
   if not srow then
@@ -562,13 +603,20 @@ function M.extract_selection(bufnr)
   end
 
   local body = util.dedent(body_raw)
+  local title_line = util.collapse_ws(first_seg)
 
-  local filename = util.timestamp() .. "_" .. util.sanitize_filename(title) .. ".md"
-  local filepath = target_dir(bufnr) .. "/" .. filename
+  local filename, filepath, merge = resolve_target(bufnr, title, bang)
 
-  local new_lines = { backlink_line(bufnr), "", "# " .. util.collapse_ws(first_seg), "" }
-  vim.list_extend(new_lines, body)
-  write_file(filepath, new_lines)
+  if merge then
+    local heading = "# " .. title_line .. " (extracted " .. os.date("%Y-%m-%d %H:%M") .. ")"
+    local block = { "", backlink_line(bufnr), "", heading, "" }
+    vim.list_extend(block, body)
+    append_file(filepath, block)
+  else
+    local new_lines = { backlink_line(bufnr), "", "# " .. title_line, "" }
+    vim.list_extend(new_lines, body)
+    write_file(filepath, new_lines)
+  end
 
   local prefix = first_line:sub(1, scol - 1)
   local suffix = last_line:sub(ecol + 1, #last_line)
@@ -585,17 +633,19 @@ function M.extract_selection(bufnr)
   end
 
   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, new_buf_lines)
-  vim.notify("MdExtract: created " .. filename)
+  vim.notify("MdExtract: " .. (merge and "appended to " or "created ") .. filename)
 end
 
 --- Entry point used by the :MdExtract command.
+-- Bang (:MdExtract!) drops the timestamp prefix and merges into an
+-- existing same-named note if one is found in the target directory.
 function M.run(opts)
   local bufnr = 0
   local ok, err = pcall(function()
     if opts and opts.range and opts.range == 2 then
-      M.extract_selection(bufnr)
+      M.extract_selection(bufnr, opts.bang)
     else
-      M.extract_header(bufnr)
+      M.extract_header(bufnr, opts.bang)
     end
   end)
   if not ok then
@@ -619,7 +669,9 @@ function M.attach(bufnr)
     require("md-extract.extract").run(opts)
   end, {
     range = true,
-    desc = "Extract markdown header/selection into a new linked note",
+    bang = true,
+    desc = "Extract markdown header/selection into a new linked note "
+      .. "(! = no timestamp; merge into an existing same-named note if found)",
   })
 
   vim.keymap.set("n", "<leader>mx", "<cmd>MdExtract<CR>", {
@@ -629,6 +681,14 @@ function M.attach(bufnr)
   vim.keymap.set("v", "<leader>mx", ":MdExtract<CR>", {
     buffer = bufnr,
     desc = "Extract selection into new note",
+  })
+  vim.keymap.set("n", "<leader>mX", "<cmd>MdExtract!<CR>", {
+    buffer = bufnr,
+    desc = "Extract header, no timestamp, merge into existing note if found",
+  })
+  vim.keymap.set("v", "<leader>mX", ":MdExtract!<CR>", {
+    buffer = bufnr,
+    desc = "Extract selection, no timestamp, merge into existing note if found",
   })
 end
 
