@@ -516,7 +516,7 @@ function M.extract_header(bufnr, bang)
 
   if merge then
     local heading = "# " .. header_text .. " (extracted " .. os.date("%Y-%m-%d %H:%M") .. ")"
-    local block = { "", backlink_line(bufnr), "", heading, "" }
+    local block = { "", "---", "", backlink_line(bufnr), "", heading, "" }
     vim.list_extend(block, body)
     append_file(filepath, block)
   else
@@ -609,7 +609,7 @@ function M.extract_selection(bufnr, bang)
 
   if merge then
     local heading = "# " .. title_line .. " (extracted " .. os.date("%Y-%m-%d %H:%M") .. ")"
-    local block = { "", backlink_line(bufnr), "", heading, "" }
+    local block = { "", "---", "", backlink_line(bufnr), "", heading, "" }
     vim.list_extend(block, body)
     append_file(filepath, block)
   else
