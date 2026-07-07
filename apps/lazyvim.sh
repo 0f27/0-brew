@@ -152,6 +152,7 @@ return {
     { "<leader>mq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian: Quick switch" },
     { "<leader>mb", "<cmd>ObsidianBacklinks<cr>", desc = "Obsidian: Backlinks" },
     { "<leader>ml", "<cmd>ObsidianLink<cr>", desc = "Obsidian: Link an inline visual selection", mode = "v" },
+    { "<leader>mL", "<cmd>ObsidianLinkNew<cr>", desc = "Obsidian: Create a new note and link it", mode = "v" },
     { "<leader>mr", "<cmd>ObsidianRename<cr>", desc = "Obsidian: Rename (updates links)" },
     { "<leader>mo", "<cmd>ObsidianOpen<cr>", desc = "Obsidian: Open in Obsidian" },
   },
@@ -170,7 +171,7 @@ return {
     picker = {
       name = "snacks.pick",
     },
-    preferred_link_style = "wiki",
+    preferred_link_style = "markdown",
   },
 }
 EOF
