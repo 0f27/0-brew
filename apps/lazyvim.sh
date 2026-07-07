@@ -143,9 +143,9 @@ return {
   },
   keys = {
     { "<leader>mt", "<cmd>ObsidianToday<cr>", desc = "Obsidian: Today" },
-    { "<leader>mb", "<cmd>ObsidianYesterday<cr>", desc = "Obsidian: Yesterday (back)" },
-    { "<leader>mn", "<cmd>ObsidianTomorrow<cr>", desc = "Obsidian: Tomorrow (forward)" },
-    { "<leader>mN", "<cmd>ObsidianNew<cr>", desc = "Obsidian: New note" },
+    { "<leader>my", "<cmd>ObsidianYesterday<cr>", desc = "Obsidian: Yesterday" },
+    { "<leader>mm", "<cmd>ObsidianTomorrow<cr>", desc = "Obsidian: Tomorrow" },
+    { "<leader>mn", "<cmd>ObsidianNew<cr>", desc = "Obsidian: New note" },
     { "<leader>ms", "<cmd>ObsidianSearch<cr>", desc = "Obsidian: Search" },
     { "<leader>mq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian: Quick switch" },
     { "<leader>ml", "<cmd>ObsidianBacklinks<cr>", desc = "Obsidian: Backlinks" },
