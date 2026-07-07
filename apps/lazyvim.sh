@@ -51,7 +51,9 @@ map("t", "<Esc>", "<C-\\><C-n>", { silent = true })
 -- Files and buffers
 map("n", "<leader>fs", "<cmd>w<cr>", { noremap = true, desc = "Save buffer" })
 map("n", "<leader>cd", "<cmd>cd %:p:h<cr>", { noremap = true, desc = "cd to this file" })
-map("n", "<leader>bb", "<cmd>Telescope buffers<CR>", { desc = "Find buffers" })
+map("n", "<leader>bb", function()
+  Snacks.picker.buffers()
+end, { desc = "Find buffers" })
 EOF
 
 mkdir -p ~/.config/lazyvim/lua/plugins
@@ -134,7 +136,7 @@ EOF
 mkdir -p ~/.config/lazyvim/lua/plugins
 cat <<'EOF' >~/.config/lazyvim/lua/plugins/obsidian.lua
 return {
-  "epwalsh/obsidian.nvim",
+  "obsidian-nvim/obsidian.nvim",
   version = "*",
   lazy = true,
   ft = "markdown",
