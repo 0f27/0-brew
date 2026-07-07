@@ -151,7 +151,7 @@ return {
     { "<leader>ms", "<cmd>ObsidianSearch<cr>", desc = "Obsidian: Search" },
     { "<leader>mq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian: Quick switch" },
     { "<leader>mb", "<cmd>ObsidianBacklinks<cr>", desc = "Obsidian: Backlinks" },
-    { "<leader>ml", "<cmd>ObsidianLink<cr>", desc = "Obsidian: Link an inline visual selection" },
+    { "<leader>ml", "<cmd>ObsidianLink<cr>", desc = "Obsidian: Link an inline visual selection", mode = "v" },
     { "<leader>mr", "<cmd>ObsidianRename<cr>", desc = "Obsidian: Rename (updates links)" },
     { "<leader>mo", "<cmd>ObsidianOpen<cr>", desc = "Obsidian: Open in Obsidian" },
   },
