@@ -129,8 +129,8 @@ cat <<'EOF' >~/.config/helix/languages.toml
 name = "c"
 file-types = ["c", "h", "keymap"]
 
-[language-server.iwe]
-command = "iwes"
+# [language-server.iwe]
+# command = "iwes"
 
 [[language]]
 name = "markdown"
