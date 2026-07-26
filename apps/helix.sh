@@ -97,7 +97,7 @@ fi
 mkdir -p ~/.config/helix
 
 cat <<'EOF' >~/.config/helix/config.toml
-theme="tokyonight"
+theme="dark_plus"
 
 [editor.cursor-shape]
 insert = "bar"
@@ -128,4 +128,16 @@ cat <<'EOF' >~/.config/helix/languages.toml
 [[language]]
 name = "c"
 file-types = ["c", "h", "keymap"]
+
+[language-server.iwe]
+command = "iwes"
+
+[[language]]
+name = "markdown"
+language-servers = [ "marksman" ]
+# language-servers = [ "iwe", "marksman" ]
+auto-format = true
+
+[editor.lsp]
+display-inlay-hints = true
 EOF
