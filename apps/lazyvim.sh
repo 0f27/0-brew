@@ -134,52 +134,6 @@ return {
 EOF
 
 mkdir -p ~/.config/lazyvim/lua/plugins
-cat <<'EOF' >~/.config/lazyvim/lua/plugins/obsidian.lua
-return {
-  "obsidian-nvim/obsidian.nvim",
-  version = "*",
-  lazy = true,
-  ft = "markdown",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-  },
-  keys = {
-    { "<leader>mt", "<cmd>Obsidian today<cr>", desc = "Obsidian: Today" },
-    { "<leader>my", "<cmd>Obsidian yesterday<cr>", desc = "Obsidian: Yesterday" },
-    { "<leader>mm", "<cmd>Obsidian tomorrow<cr>", desc = "Obsidian: Tomorrow" },
-    { "<leader>mn", "<cmd>Obsidian new<cr>", desc = "Obsidian: New note" },
-    { "<leader>ms", "<cmd>Obsidian search<cr>", desc = "Obsidian: Search" },
-    { "<leader>mq", "<cmd>Obsidian quick_switch<cr>", desc = "Obsidian: Quick switch" },
-    { "<leader>mb", "<cmd>Obsidian backlinks<cr>", desc = "Obsidian: Backlinks" },
-    { "<leader>ml", "<cmd>Obsidian link<cr>", desc = "Obsidian: Link visual selection", mode = "v" },
-    { "<leader>mL", "<cmd>Obsidian link_new<cr>", desc = "Obsidian: Link (new) visual selection", mode = "v" },
-    { "<leader>mr", "<cmd>Obsidian rename<cr>", desc = "Obsidian: Rename (updates links)" },
-    { "<leader>mo", "<cmd>Obsidian open<cr>", desc = "Obsidian: Open in Obsidian" },
-  },
-  opts = {
-    -- The fork's own README example sets this to false and warns legacy
-    -- ObsidianXxx-style commands will be removed in 4.0.0 -- switching now
-    -- avoids a forced migration later.
-    legacy_commands = false,
-
-    workspaces = {
-      {
-        name = "vault",
-        path = "~/Org/vault_markdown", -- change to your vault location
-      },
-    },
-    ui = {
-      enable = false,
-    },
-    picker = {
-      name = "snacks.picker",
-    },
-    link = {
-      style = "markdown",
-    },
-  },
-}
-EOF
 
 # --- md-extract: local plugin for extracting a markdown header/selection
 # into a new linked note. Pure Lua, no external deps, so it's embedded
